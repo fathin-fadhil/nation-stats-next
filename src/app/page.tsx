@@ -1,5 +1,10 @@
 import Link from "next/link";
+import { LandingPage } from "~/components/landing-page";
 
 export default function HomePage() {
-  return <main className="">halo</main>;
+  return (
+    <main className="">
+      <LandingPage />
+    </main>
+  );
 }
