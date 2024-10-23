@@ -42,10 +42,17 @@ export function LandingPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="flex h-14 items-center px-4 lg:px-6">
+      <div className="globe-container">
+        <img
+          src="/assets/images/globe.png"
+          alt="Globe"
+          className="h-full w-full object-cover opacity-60"
+        />
+      </div>
+      <header className="fixed left-0 right-0 top-0 z-10 flex h-14 items-center border-b-[1px] bg-white/50 px-4 backdrop-blur-lg lg:px-6">
         <a className="flex items-center justify-center" href="#">
           <Globe2 className="h-6 w-6" />
-          <span className="ml-2 text-2xl font-bold">NationStat</span>
+          <span className="ml-2 text-2xl font-bold">NationStats</span>
         </a>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <a
@@ -68,18 +75,18 @@ export function LandingPage() {
           </a>
         </nav>
       </header>
-      <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      <main className="flex-1 pt-10">
+        <section className="relative flex w-full justify-center bg-gradient-to-t from-neutral-200 to-transparent py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Explore and Compare Nations Like Never Before
+                  Eksplore dan Bandingkan Negara Dengan Mudah
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Discover the unique characteristics of countries worldwide.
-                  Compare political systems, governments, and more with just a
-                  few clicks.
+                <p className="mx-auto max-w-[700px] dark:text-gray-400 md:text-xl">
+                  Temukan karakteristik unik negara di seluruh dunia. Bandingkan
+                  sistem politik, pemerintahan, dan banyak lagi hanya dengan
+                  beberapa klik.
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
@@ -94,7 +101,7 @@ export function LandingPage() {
                       <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
                       <Input
                         placeholder="Search..."
-                        className="placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                         value={searchTerm}
                         onChange={(e) => handleSearch(e.target.value)}
                       />
@@ -106,58 +113,58 @@ export function LandingPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-xs text-muted-foreground">
                   Select a country to view its detailed information
                 </p>
               </div>
             </div>
           </div>
         </section>
-        <section className="w-full bg-gray-100 py-12 md:py-24 lg:py-32 dark:bg-gray-800">
+        <section className="flex w-full justify-center bg-gray-100 py-12 dark:bg-gray-800 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-5xl">
-              Key Features
+              Fitur Utama
             </h2>
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
               <Card>
                 <CardHeader>
                   <Search className="mb-2 h-10 w-10" />
-                  <CardTitle>Comprehensive Data</CardTitle>
+                  <CardTitle>Data yang lengkap</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  Access detailed information on government forms, political
-                  systems, electoral processes, and more for countries around
-                  the world.
+                  Akses informasi detail tentang bentuk pemerintahan, sistem
+                  politik, proses pemilihan, dan banyak lagi untuk negara di
+                  seluruh dunia.
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
                   <GitCompare className="mb-2 h-10 w-10" />
-                  <CardTitle>Side-by-Side Comparison</CardTitle>
+                  <CardTitle>Pembandingan Langsung</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  Easily compare two or more countries to understand their
-                  similarities and differences across various political and
-                  social metrics.
+                  Dengan mudah bandingkan dua atau lebih negara untuk memahami
+                  kesamaan dan perbedaan mereka di berbagai metrik politik dan
+                  sosial.
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
                   <BarChart2 className="mb-2 h-10 w-10" />
-                  <CardTitle>Visual Insights</CardTitle>
+                  <CardTitle>Wawasan Visual</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  Explore data through interactive charts and graphs, making
-                  complex information easy to understand at a glance.
+                  Eksplor data melalui grafik dan diagram interaktif, membuat
+                  informasi yang kompleks mudah dipahami hanya dengan sekilas.
                 </CardContent>
               </Card>
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="flex w-full justify-center bg-white py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-5xl">
-              Compare Countries Side by Side
+              Mulai Bandingkan Negara
             </h2>
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
               <Card>
@@ -195,14 +202,14 @@ export function LandingPage() {
             </div>
           </div>
         </section>
-        <section className="w-full bg-gray-100 py-12 md:py-24 lg:py-32 dark:bg-gray-800">
+        <section className="flex w-full justify-center bg-gray-100 py-12 dark:bg-gray-800 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                   Ready to Explore the World's Nations?
                 </h2>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl">
                   Start comparing countries and discovering fascinating insights
                   about global political systems today.
                 </p>
@@ -214,7 +221,7 @@ export function LandingPage() {
           </div>
         </section>
       </main>
-      <footer className="flex w-full shrink-0 flex-col items-center gap-2 border-t px-4 py-6 sm:flex-row md:px-6">
+      <footer className="flex w-full shrink-0 flex-col items-center gap-2 border-t bg-white px-4 py-6 sm:flex-row md:px-6">
         <p className="text-xs text-gray-500 dark:text-gray-400">
           © 2024 NationStat. All rights reserved.
         </p>

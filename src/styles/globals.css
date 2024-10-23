@@ -64,3 +64,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.globe-container {
+  @apply fixed translate-x-[50%] md:translate-x-0 right-[50%] -z-10 aspect-square;
+  width: clamp(40rem, 70vw, 100rem);
+}
