@@ -15,6 +15,13 @@
       "when": 1729779549246,
       "tag": "0001_jazzy_baron_strucker",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729780611475,
+      "tag": "0002_skinny_vanisher",
+      "breakpoints": true
     }
   ]
 }

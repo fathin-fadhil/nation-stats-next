@@ -126,6 +126,8 @@ export const nations = createTable("nation", {
 export const nationsRelations = relations(nations, ({ many }) => ({
   parties: many(politicalParties),
   governmentFormsToNations: many(governmentFormsToNations),
+  politicalSystemsToNations: many(politicalSystemsToNations),
+  headOfStatesToNations: many(headOfStatesToNations),
 }));
 
 // policical parties (one nation to many parties relationship)
@@ -184,6 +186,80 @@ export const governmentFormsToNationsRelations = relations(
     governmentForm: one(governmentForms, {
       fields: [governmentFormsToNations.governmentFormId],
       references: [governmentForms.id],
+    }),
+  }),
+);
+
+// political system (many to many relationship)
+export const politicalSystems = createTable("political_system", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+});
+
+export const politicalSystemsRelations = relations(
+  politicalSystems,
+  ({ many }) => ({
+    politicalSystemsToNations: many(politicalSystemsToNations),
+  }),
+);
+
+export const politicalSystemsToNations = createTable(
+  "political_system_to_nation",
+  {
+    nationId: varchar("nation_id", { length: 255 }).notNull(),
+    politicalSystemId: varchar("political_system_id", {
+      length: 255,
+    }).notNull(),
+  },
+);
+
+export const politicalSystemsToNationsRelations = relations(
+  politicalSystemsToNations,
+  ({ one }) => ({
+    nation: one(nations, {
+      fields: [politicalSystemsToNations.nationId],
+      references: [nations.id],
+    }),
+    politicalSystem: one(politicalSystems, {
+      fields: [politicalSystemsToNations.politicalSystemId],
+      references: [politicalSystems.id],
+    }),
+  }),
+);
+
+// head of state (many to many relationship)
+export const headOfStates = createTable("head_of_state", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+});
+
+export const headOfStatesRelations = relations(headOfStates, ({ many }) => ({
+  headOfStatesToNations: many(headOfStatesToNations),
+}));
+
+export const headOfStatesToNations = createTable("head_of_state_to_nation", {
+  nationId: varchar("nation_id", { length: 255 }).notNull(),
+  headOfStateId: varchar("head_of_state_id", { length: 255 }).notNull(),
+});
+
+export const headOfStatesToNationsRelations = relations(
+  headOfStatesToNations,
+  ({ one }) => ({
+    nation: one(nations, {
+      fields: [headOfStatesToNations.nationId],
+      references: [nations.id],
+    }),
+    headOfState: one(headOfStates, {
+      fields: [headOfStatesToNations.headOfStateId],
+      references: [headOfStates.id],
     }),
   }),
 );
