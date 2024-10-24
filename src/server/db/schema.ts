@@ -1,4 +1,4 @@
-import { desc, relations, sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -158,7 +158,7 @@ export const governmentForms = createTable("government_form", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: text("name").notNull(),
+  name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
 });
 
@@ -172,6 +172,7 @@ export const governmentFormsRelations = relations(
 export const governmentFormsToNations = createTable(
   "government_form_to_nation",
   {
+    id: serial("id").notNull().primaryKey(),
     nationId: varchar("nation_id", { length: 255 }).notNull(),
     governmentFormId: varchar("government_form_id", { length: 255 }).notNull(),
   },
@@ -197,7 +198,7 @@ export const politicalSystems = createTable("political_system", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: text("name").notNull(),
+  name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
 });
 
@@ -211,6 +212,7 @@ export const politicalSystemsRelations = relations(
 export const politicalSystemsToNations = createTable(
   "political_system_to_nation",
   {
+    id: serial("id").notNull().primaryKey(),
     nationId: varchar("nation_id", { length: 255 }).notNull(),
     politicalSystemId: varchar("political_system_id", {
       length: 255,
@@ -238,7 +240,7 @@ export const headOfStates = createTable("head_of_state", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: varchar("name", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
 });
 
@@ -247,6 +249,7 @@ export const headOfStatesRelations = relations(headOfStates, ({ many }) => ({
 }));
 
 export const headOfStatesToNations = createTable("head_of_state_to_nation", {
+  id: serial("id").notNull().primaryKey(),
   nationId: varchar("nation_id", { length: 255 }).notNull(),
   headOfStateId: varchar("head_of_state_id", { length: 255 }).notNull(),
 });
@@ -271,7 +274,7 @@ export const headOfGovernments = createTable("head_of_government", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: varchar("name", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
 });
 
@@ -285,6 +288,7 @@ export const headOfGovernmentsRelations = relations(
 export const headOfGovernmentsToNations = createTable(
   "head_of_government_to_nation",
   {
+    id: serial("id").notNull().primaryKey(),
     nationId: varchar("nation_id", { length: 255 }).notNull(),
     headOfGovernmentId: varchar("head_of_government_id", {
       length: 255,
