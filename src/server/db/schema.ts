@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { desc, relations, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -105,5 +105,85 @@ export const verificationTokens = createTable(
   },
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
+  }),
+);
+
+export const nations = createTable("nation", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  code: varchar("code", { length: 255 }).notNull().unique(),
+  name: varchar("name", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  description: text("description"),
+  democracyIndex: varchar("democracy_index", { length: 255 }),
+  RuleOfLawIndex: varchar("rule_of_law_index", { length: 255 }),
+  corruptionIndex: varchar("corruption_index", { length: 255 }),
+  humanDevelopmentIndex: varchar("hdi", { length: 255 }),
+});
+
+export const nationsRelations = relations(nations, ({ many }) => ({
+  parties: many(politicalParties),
+  governmentFormsToNations: many(governmentFormsToNations),
+}));
+
+// policical parties (one nation to many parties relationship)
+export const politicalParties = createTable("political_party", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  logoUrl: text("logo_url"),
+  nationId: varchar("nation_id", { length: 255 }).notNull(),
+});
+
+export const politicalPartiesRelations = relations(
+  politicalParties,
+  ({ one }) => ({
+    nation: one(nations, {
+      fields: [politicalParties.nationId],
+      references: [nations.id],
+    }),
+  }),
+);
+
+// government form (many to many relationship)
+export const governmentForms = createTable("government_form", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+});
+
+export const governmentFormsRelations = relations(
+  governmentForms,
+  ({ many }) => ({
+    govermentFormsToNations: many(governmentFormsToNations),
+  }),
+);
+
+export const governmentFormsToNations = createTable(
+  "government_form_to_nation",
+  {
+    nationId: varchar("nation_id", { length: 255 }).notNull(),
+    governmentFormId: varchar("government_form_id", { length: 255 }).notNull(),
+  },
+);
+
+export const governmentFormsToNationsRelations = relations(
+  governmentFormsToNations,
+  ({ one }) => ({
+    nation: one(nations, {
+      fields: [governmentFormsToNations.nationId],
+      references: [nations.id],
+    }),
+    governmentForm: one(governmentForms, {
+      fields: [governmentFormsToNations.governmentFormId],
+      references: [governmentForms.id],
+    }),
   }),
 );
