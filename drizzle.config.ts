@@ -8,5 +8,4 @@ export default {
   dbCredentials: {
     url: env.DATABASE_URL,
   },
-  tablesFilter: ["nation-stats-next_*"],
 } satisfies Config;
