@@ -127,13 +127,13 @@ export const nations = createTable("nation", {
 
 export const nationsRelations = relations(nations, ({ many, one }) => ({
   parties: many(politicalParties),
-  governmentFormsToNations: many(governmentFormsToNations),
-  politicalSystemsToNations: many(politicalSystemsToNations),
+  governmentForms: many(governmentFormsToNations),
+  politicalSystems: many(politicalSystemsToNations),
   headOfStates: one(headOfStates, {
     fields: [nations.headOfStatesId],
     references: [headOfStates.id],
   }),
-  headOfGovernmentsToNations: one(headOfGovernments, {
+  headOfGovernments: one(headOfGovernments, {
     fields: [nations.headOfGovernmentId],
     references: [headOfGovernments.id],
   }),
