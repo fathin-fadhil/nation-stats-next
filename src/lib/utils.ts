@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export async function AsyncCatchError<T>(
+export async function asyncCatchError<T>(
   fn: Promise<T>,
 ): Promise<[undefined, T] | [Error]> {
   return fn

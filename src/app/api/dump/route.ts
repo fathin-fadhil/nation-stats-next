@@ -1,9 +1,11 @@
 import { eq, InferSelectModel } from "drizzle-orm";
 import { z } from "zod";
 import { env } from "~/env";
-import { AsyncCatchError } from "~/lib/utils";
+import { asyncCatchError } from "~/lib/utils";
 import { db } from "~/server/db";
 import {
+  governmentForms,
+  governmentFormsToNations,
   headOfStates,
   headOfStatesToNations,
   nations,
@@ -17,7 +19,7 @@ export async function POST(request: Request) {
       status: 401,
     });
 
-  const [err, nationJson] = await AsyncCatchError(request.json());
+  const [err, nationJson] = await asyncCatchError(request.json());
   if (err)
     return new Response(JSON.stringify({ message: "Error: bad json" }), {
       status: 400,
@@ -71,6 +73,65 @@ export async function POST(request: Request) {
     headOfStateId,
     nationId: nation[0]!.id,
   });
+
+  // adding or setting government form if already exists
+  const [addGovFromErr, govFormIdArray] = await asyncCatchError(
+    Promise.all(
+      data.government_form.map(async (form) => {
+        const similarForm = await db
+          .select()
+          .from(governmentForms)
+          .where(eq(governmentForms.name, form));
+
+        if (similarForm.length === 0) {
+          return (
+            await db
+              .insert(governmentForms)
+              .values({
+                name: form,
+                slug: form.toLowerCase().replace(/ /g, "-"),
+              })
+              .returning({ id: governmentForms.id })
+          )[0]!.id;
+        } else {
+          return similarForm[0]!.id;
+        }
+      }),
+    ),
+  );
+
+  if (addGovFromErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: adding government form",
+        error: addGovFromErr,
+      }),
+      {
+        status: 500,
+      },
+    );
+
+  const [insertGovFormToNatErr] = await asyncCatchError(
+    Promise.all(
+      govFormIdArray.map(async (govFormId) => {
+        return await db.insert(governmentFormsToNations).values({
+          governmentFormId: govFormId,
+          nationId: nation[0]!.id,
+        });
+      }),
+    ),
+  );
+
+  if (insertGovFormToNatErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: adding government form to nation",
+        error: insertGovFormToNatErr,
+      }),
+      {
+        status: 500,
+      },
+    );
 
   console.log("🚀 ~ nation ~ nation:", nation);
 
