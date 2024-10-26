@@ -121,14 +121,22 @@ export const nations = createTable("nation", {
   RuleOfLawIndex: varchar("rule_of_law_index", { length: 255 }),
   corruptionIndex: varchar("corruption_index", { length: 255 }),
   humanDevelopmentIndex: varchar("hdi", { length: 255 }),
+  headOfStatesId: varchar("head_of_state_id", { length: 255 }),
+  headOfGovernmentId: varchar("head_of_government_id", { length: 255 }),
 });
 
-export const nationsRelations = relations(nations, ({ many }) => ({
+export const nationsRelations = relations(nations, ({ many, one }) => ({
   parties: many(politicalParties),
   governmentFormsToNations: many(governmentFormsToNations),
   politicalSystemsToNations: many(politicalSystemsToNations),
-  headOfStatesToNations: many(headOfStatesToNations),
-  headOfGovernmentsToNations: many(headOfGovernmentsToNations),
+  headOfStates: one(headOfStates, {
+    fields: [nations.headOfStatesId],
+    references: [headOfStates.id],
+  }),
+  headOfGovernmentsToNations: one(headOfGovernments, {
+    fields: [nations.headOfGovernmentId],
+    references: [headOfGovernments.id],
+  }),
 }));
 
 // policical parties (one nation to many parties relationship)
@@ -234,7 +242,7 @@ export const politicalSystemsToNationsRelations = relations(
   }),
 );
 
-// head of state (many to many relationship)
+// head of state (one to many relationship)
 export const headOfStates = createTable("head_of_state", {
   id: varchar("id", { length: 255 })
     .notNull()
@@ -245,30 +253,10 @@ export const headOfStates = createTable("head_of_state", {
 });
 
 export const headOfStatesRelations = relations(headOfStates, ({ many }) => ({
-  headOfStatesToNations: many(headOfStatesToNations),
+  headOfStatesToNations: many(nations),
 }));
 
-export const headOfStatesToNations = createTable("head_of_state_to_nation", {
-  id: serial("id").notNull().primaryKey(),
-  nationId: varchar("nation_id", { length: 255 }).notNull(),
-  headOfStateId: varchar("head_of_state_id", { length: 255 }).notNull(),
-});
-
-export const headOfStatesToNationsRelations = relations(
-  headOfStatesToNations,
-  ({ one }) => ({
-    nation: one(nations, {
-      fields: [headOfStatesToNations.nationId],
-      references: [nations.id],
-    }),
-    headOfState: one(headOfStates, {
-      fields: [headOfStatesToNations.headOfStateId],
-      references: [headOfStates.id],
-    }),
-  }),
-);
-
-// head of government (many to many relationship)
+// head of government (one to many relationship)
 export const headOfGovernments = createTable("head_of_government", {
   id: varchar("id", { length: 255 })
     .notNull()
@@ -280,32 +268,5 @@ export const headOfGovernments = createTable("head_of_government", {
 
 export const headOfGovernmentsRelations = relations(
   headOfGovernments,
-  ({ many }) => ({
-    headOfGovernmentsToNations: many(headOfGovernmentsToNations),
-  }),
-);
-
-export const headOfGovernmentsToNations = createTable(
-  "head_of_government_to_nation",
-  {
-    id: serial("id").notNull().primaryKey(),
-    nationId: varchar("nation_id", { length: 255 }).notNull(),
-    headOfGovernmentId: varchar("head_of_government_id", {
-      length: 255,
-    }).notNull(),
-  },
-);
-
-export const headOfGovernmentsToNationsRelations = relations(
-  headOfGovernmentsToNations,
-  ({ one }) => ({
-    nation: one(nations, {
-      fields: [headOfGovernmentsToNations.nationId],
-      references: [nations.id],
-    }),
-    headOfGovernment: one(headOfGovernments, {
-      fields: [headOfGovernmentsToNations.headOfGovernmentId],
-      references: [headOfGovernments.id],
-    }),
-  }),
+  ({ many }) => ({ headOfGovernmentsToNations: many(nations) }),
 );
