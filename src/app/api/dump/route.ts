@@ -7,7 +7,6 @@ import {
   governmentForms,
   governmentFormsToNations,
   headOfStates,
-  headOfStatesToNations,
   nations,
 } from "~/server/db/schema";
 
@@ -33,6 +32,49 @@ export async function POST(request: Request) {
 
   console.log("adding new nation");
 
+  // checking if head of state exists, if not adding new
+  const [HOSErr, similarHOS] = await asyncCatchError(
+    db
+      .select()
+      .from(headOfStates)
+      .where(eq(headOfStates.name, data.head_of_state)),
+  );
+
+  if (HOSErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: checking head of state",
+        error: HOSErr,
+      }),
+      { status: 500 },
+    );
+
+  let HOSId: string;
+  if (similarHOS.length === 0) {
+    const [addHOSErr, headOfState] = await asyncCatchError(
+      db
+        .insert(headOfStates)
+        .values({
+          name: data.head_of_state,
+          slug: data.head_of_state.toLowerCase().replace(/ /g, "-"),
+        })
+        .returning({ id: headOfStates.id }),
+    );
+
+    if (addHOSErr)
+      return new Response(
+        JSON.stringify({
+          message: "Error: adding head of state",
+          error: addHOSErr,
+        }),
+        { status: 500 },
+      );
+
+    HOSId = headOfState[0]!.id;
+  } else {
+    HOSId = similarHOS[0]!.id;
+  }
+
   // adding new nation
   const [addNatErr, nation] = await asyncCatchError(
     db
@@ -46,6 +88,7 @@ export async function POST(request: Request) {
         RuleOfLawIndex: data.rule_of_law_index,
         corruptionIndex: data.corruption_index,
         humanDevelopmentIndex: data.hdi,
+        headOfStatesId: HOSId,
       })
       .returning({ id: nations.id }),
   );
@@ -55,53 +98,6 @@ export async function POST(request: Request) {
       JSON.stringify({ message: "Error: adding nation", error: addNatErr }),
       { status: 500 },
     );
-
-  // adding or setting head of state if already exists
-  const [similarHOSErr, similarHOS] = await asyncCatchError(
-    db
-      .select()
-      .from(headOfStates)
-      .where(eq(headOfStates.name, data.head_of_state)),
-  );
-
-  if (similarHOSErr)
-    return new Response(
-      JSON.stringify({
-        message: "Error: selecting head of state",
-        error: similarHOSErr,
-      }),
-      { status: 500 },
-    );
-
-  const [insertHOSErr, headOfStateId] = await asyncCatchError(
-    (async () => {
-      if (similarHOS.length !== 0) return similarHOS[0]!.id;
-
-      return (
-        await db
-          .insert(headOfStates)
-          .values({
-            name: data.head_of_state,
-            slug: data.head_of_state.toLowerCase().replace(/ /g, "-"),
-          })
-          .returning({ id: headOfStates.id })
-      )[0]?.id!;
-    })(),
-  );
-
-  if (insertHOSErr)
-    return new Response(
-      JSON.stringify({
-        message: "Error: adding head of state",
-        error: insertHOSErr,
-      }),
-      { status: 500 },
-    );
-
-  await db.insert(headOfStatesToNations).values({
-    headOfStateId,
-    nationId: nation[0]!.id,
-  });
 
   // adding or setting government form if already exists
   const [addGovFromErr, govFormIdArray] = await asyncCatchError(
