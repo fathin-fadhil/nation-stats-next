@@ -10,6 +10,8 @@ import {
   headOfStates,
   nations,
   politicalParties,
+  politicalSystems,
+  politicalSystemsToNations,
 } from "~/server/db/schema";
 
 export async function POST(request: Request) {
@@ -218,6 +220,57 @@ export async function POST(request: Request) {
       JSON.stringify({
         message: "Error: adding political parties",
         error: insertPoliticalPartiesErr,
+      }),
+      { status: 500 },
+    );
+
+  // setting political system, or adding new if not exists
+  const [addPolSysErr, polSysIdArray] = await asyncCatchError(
+    Promise.all(
+      data.political_system.map(async (polSys) => {
+        const similarPolSys = await db
+          .select()
+          .from(politicalSystems)
+          .where(eq(politicalSystems.name, polSys));
+        if (similarPolSys.length !== 0) return similarPolSys[0]!.id;
+        return (
+          await db
+            .insert(politicalSystems)
+            .values({
+              name: polSys,
+              slug: polSys.toLowerCase().replace(/ /g, "-"),
+            })
+            .returning({ id: politicalSystems.id })
+        )[0]!.id;
+      }),
+    ),
+  );
+
+  if (addPolSysErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: adding political system",
+        error: addPolSysErr,
+      }),
+      { status: 500 },
+    );
+
+  const [insertPolSysToNatErr] = await asyncCatchError(
+    Promise.all(
+      polSysIdArray.map(async (polSysId) => {
+        return await db.insert(politicalSystemsToNations).values({
+          politicalSystemId: polSysId,
+          nationId: nation[0]!.id,
+        });
+      }),
+    ),
+  );
+
+  if (insertPolSysToNatErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: adding political system to nation",
+        error: insertPolSysToNatErr,
       }),
       { status: 500 },
     );
