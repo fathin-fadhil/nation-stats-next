@@ -34,40 +34,69 @@ export async function POST(request: Request) {
   console.log("adding new nation");
 
   // adding new nation
-  const nation = await db
-    .insert(nations)
-    .values({
-      code: data.country_code,
-      name: data.country_name,
-      slug: data.country_name.toLowerCase().replace(/ /g, "-"),
-      description: data.description,
-      democracyIndex: data.democracy_index,
-      RuleOfLawIndex: data.rule_of_law_index,
-      corruptionIndex: data.corruption_index,
-      humanDevelopmentIndex: data.hdi,
-    })
-    .returning({ id: nations.id });
+  const [addNatErr, nation] = await asyncCatchError(
+    db
+      .insert(nations)
+      .values({
+        code: data.country_code,
+        name: data.country_name,
+        slug: data.country_name.toLowerCase().replace(/ /g, "-"),
+        description: data.description,
+        democracyIndex: data.democracy_index,
+        RuleOfLawIndex: data.rule_of_law_index,
+        corruptionIndex: data.corruption_index,
+        humanDevelopmentIndex: data.hdi,
+      })
+      .returning({ id: nations.id }),
+  );
+
+  if (addNatErr)
+    return new Response(
+      JSON.stringify({ message: "Error: adding nation", error: addNatErr }),
+      { status: 500 },
+    );
 
   // adding or setting head of state if already exists
-  const similarHeadOfState = await db
-    .select()
-    .from(headOfStates)
-    .where(eq(headOfStates.name, data.head_of_state));
+  const [similarHOSErr, similarHOS] = await asyncCatchError(
+    db
+      .select()
+      .from(headOfStates)
+      .where(eq(headOfStates.name, data.head_of_state)),
+  );
 
-  let headOfStateId: string;
-  if (similarHeadOfState.length === 0) {
-    headOfStateId = (
-      await db
-        .insert(headOfStates)
-        .values({
-          name: data.head_of_state,
-          slug: data.head_of_state.toLowerCase().replace(/ /g, "-"),
-        })
-        .returning({ id: headOfStates.id })
-    )[0]?.id!;
-  } else {
-    headOfStateId = similarHeadOfState[0]!.id;
-  }
+  if (similarHOSErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: selecting head of state",
+        error: similarHOSErr,
+      }),
+      { status: 500 },
+    );
+
+  const [insertHOSErr, headOfStateId] = await asyncCatchError(
+    (async () => {
+      if (similarHOS.length !== 0) return similarHOS[0]!.id;
+
+      return (
+        await db
+          .insert(headOfStates)
+          .values({
+            name: data.head_of_state,
+            slug: data.head_of_state.toLowerCase().replace(/ /g, "-"),
+          })
+          .returning({ id: headOfStates.id })
+      )[0]?.id!;
+    })(),
+  );
+
+  if (insertHOSErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: adding head of state",
+        error: insertHOSErr,
+      }),
+      { status: 500 },
+    );
 
   await db.insert(headOfStatesToNations).values({
     headOfStateId,
@@ -83,19 +112,17 @@ export async function POST(request: Request) {
           .from(governmentForms)
           .where(eq(governmentForms.name, form));
 
-        if (similarForm.length === 0) {
-          return (
-            await db
-              .insert(governmentForms)
-              .values({
-                name: form,
-                slug: form.toLowerCase().replace(/ /g, "-"),
-              })
-              .returning({ id: governmentForms.id })
-          )[0]!.id;
-        } else {
-          return similarForm[0]!.id;
-        }
+        if (similarForm.length !== 0) return similarForm[0]!.id;
+
+        return (
+          await db
+            .insert(governmentForms)
+            .values({
+              name: form,
+              slug: form.toLowerCase().replace(/ /g, "-"),
+            })
+            .returning({ id: governmentForms.id })
+        )[0]!.id;
       }),
     ),
   );
@@ -106,9 +133,7 @@ export async function POST(request: Request) {
         message: "Error: adding government form",
         error: addGovFromErr,
       }),
-      {
-        status: 500,
-      },
+      { status: 500 },
     );
 
   const [insertGovFormToNatErr] = await asyncCatchError(
