@@ -9,6 +9,7 @@ import {
   headOfGovernments,
   headOfStates,
   nations,
+  politicalParties,
 } from "~/server/db/schema";
 
 export async function POST(request: Request) {
@@ -197,6 +198,28 @@ export async function POST(request: Request) {
       {
         status: 500,
       },
+    );
+
+  // inserting political parties
+  const [insertPoliticalPartiesErr] = await asyncCatchError(
+    Promise.all(
+      data.political_parties.map(async (party) => {
+        return await db.insert(politicalParties).values({
+          name: party.name,
+          logoUrl: party.logo_url,
+          nationId: nation[0]!.id,
+        });
+      }),
+    ),
+  );
+
+  if (insertPoliticalPartiesErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: adding political parties",
+        error: insertPoliticalPartiesErr,
+      }),
+      { status: 500 },
     );
 
   console.log("🚀 ~ nation ~ nation:", nation);
