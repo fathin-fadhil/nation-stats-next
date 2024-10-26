@@ -6,6 +6,7 @@ import { db } from "~/server/db";
 import {
   governmentForms,
   governmentFormsToNations,
+  headOfGovernments,
   headOfStates,
   nations,
 } from "~/server/db/schema";
@@ -75,6 +76,49 @@ export async function POST(request: Request) {
     HOSId = similarHOS[0]!.id;
   }
 
+  // checking if head of government exists, if not adding new
+  const [HOGErr, similarHOG] = await asyncCatchError(
+    db
+      .select()
+      .from(headOfGovernments)
+      .where(eq(headOfGovernments.name, data.head_of_government)),
+  );
+
+  if (HOGErr)
+    return new Response(
+      JSON.stringify({
+        message: "Error: checking head of government",
+        error: HOGErr,
+      }),
+      { status: 500 },
+    );
+
+  let HOGId: string;
+  if (similarHOG.length === 0) {
+    const [addHOSErr, headOfState] = await asyncCatchError(
+      db
+        .insert(headOfGovernments)
+        .values({
+          name: data.head_of_government,
+          slug: data.head_of_government.toLowerCase().replace(/ /g, "-"),
+        })
+        .returning({ id: headOfStates.id }),
+    );
+
+    if (addHOSErr)
+      return new Response(
+        JSON.stringify({
+          message: "Error: adding head of government",
+          error: addHOSErr,
+        }),
+        { status: 500 },
+      );
+
+    HOGId = headOfState[0]!.id;
+  } else {
+    HOGId = similarHOG[0]!.id;
+  }
+
   // adding new nation
   const [addNatErr, nation] = await asyncCatchError(
     db
@@ -89,6 +133,7 @@ export async function POST(request: Request) {
         corruptionIndex: data.corruption_index,
         humanDevelopmentIndex: data.hdi,
         headOfStatesId: HOSId,
+        headOfGovernmentId: HOGId,
       })
       .returning({ id: nations.id }),
   );
