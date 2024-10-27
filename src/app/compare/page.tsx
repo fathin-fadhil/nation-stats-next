@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { SearchNations } from "./SearchNations";
-import { NationCard } from "./NationCard";
+import { NationsGrid } from "./NationCard";
 
 export default async function ComparePage({
   searchParams,
@@ -42,11 +42,7 @@ export default async function ComparePage({
         </h1>
         <main className="mx-auto flex w-full max-w-5xl flex-col px-4">
           <SearchNations allNations={allNations} />
-          <div className="flex justify-center gap-2">
-            {nationsData.map((nationData) => (
-              <NationCard nation={nationData.nation!} />
-            ))}
-          </div>
+          <NationsGrid nations={nationsData.map((nat) => nat.nation!)} />
         </main>
       </div>
     </div>
