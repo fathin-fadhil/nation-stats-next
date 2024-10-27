@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Progress } from "~/components/ui/progress";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { stringToColor } from "~/lib/utils";
 import { Nation } from "~/server/actions/nations";
@@ -290,6 +291,43 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                       </span>
                     </div>
                   ))}
+                </div>
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td colSpan={nations.length} className="pb-3 pt-6">
+              <h3 className="text-center text-lg font-semibold">
+                Indeks Negara
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            {nations.map((nation) => (
+              <td
+                key={nation.id + "demoidx"}
+                className="w-[50%] px-2 align-top"
+              >
+                <span className="mb-1 flex flex-col items-center justify-center gap-1 text-sm font-medium md:mb-2 md:flex-row lg:text-base">
+                  <ScrollText className="h-5 w-5 text-gray-500" />
+                  <span className="cursor-pointer hover:underline">
+                    Indeks Demokrasi
+                    <ExternalLink className="ms-1 inline size-3" />
+                  </span>
+                </span>
+                <Progress
+                  colorClass="bg-red-600"
+                  className="bg-gray-300"
+                  value={
+                    parseFloat(
+                      nation.democracyIndex?.replace(",", ".") || "0",
+                    ) * 10
+                  }
+                />
+                <div className="flex justify-between">
+                  <span className="text-sm">0</span>
+                  <span>{nation.democracyIndex}</span>
+                  <span className="text-sm">10</span>
                 </div>
               </td>
             ))}
