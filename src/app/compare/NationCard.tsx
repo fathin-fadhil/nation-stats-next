@@ -135,13 +135,18 @@ import { Nation } from "~/server/actions/nations";
 
 export function NationsGrid({ nations }: { nations: Nation[] }) {
   return (
-    <Card className={`p-2 md:p-4 lg:p-6`}>
+    <Card className={`px-2 py-5 md:px-4 md:py-6 lg:px-6`}>
       <table className="w-full">
         <thead>
           <tr>
             {nations.map((nation) => (
               <th className="w-[50%]">
                 <CardTitle className="text-xl font-bold lg:text-2xl">
+                  <img
+                    src={` https://flagcdn.com/h120/${nation.code}.png `}
+                    width={40}
+                    className="me-2 inline h-fit"
+                  ></img>
                   {nation.name}
                 </CardTitle>
               </th>
@@ -183,7 +188,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             {nations.map((nation) => (
               <td key={nation.id} className="w-[50%]">
                 <div className="flex flex-col items-center gap-2">
-                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-semibold md:flex-row lg:text-base">
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Building2 className="h-5 w-5 text-gray-500" />
                     Bentuk Pemerintahan:
                   </span>
@@ -209,7 +214,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             {nations.map((nation) => (
               <td key={nation.id} className="w-[50%] pt-6">
                 <div className="flex flex-col items-center gap-2">
-                  <span className="lg:text-basee flex flex-col items-center justify-center gap-1 text-sm font-semibold md:flex-row">
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Crown className="h-5 w-5 text-gray-500" />
                     Kepala Negara:
                   </span>
@@ -235,7 +240,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             {nations.map((nation) => (
               <td key={nation.id} className="w-[50%] pt-6">
                 <div className="flex flex-col items-center gap-2">
-                  <span className="lg:text-basee flex flex-col items-center justify-center gap-1 text-sm font-semibold md:flex-row">
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <UserRound className="h-5 w-5 text-gray-500" />
                     Kepala Pemerintahan:
                   </span>
