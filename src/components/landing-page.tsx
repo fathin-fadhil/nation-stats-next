@@ -1,18 +1,11 @@
-"use client";
-
 import * as React from "react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Globe2, Search, BarChart2, GitCompare } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
-import { Input } from "~/components/ui/input";
+import { Search, BarChart2, GitCompare } from "lucide-react";
 import { Header } from "./header";
+import { NationsDropdown } from "./nations-dropdown";
+import { getAllNations } from "~/server/actions/nations";
+import { ClientNationsDropdown } from "./client-nations-dropdown";
 
 // This is a mock list of countries. In a real application, you'd fetch this from an API or database.
 const countries = [
@@ -29,18 +22,6 @@ const countries = [
 ].sort();
 
 export function LandingPage() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [filteredCountries, setFilteredCountries] = React.useState(countries);
-
-  const handleSearch = (value: string) => {
-    setSearchTerm(value);
-    setFilteredCountries(
-      countries.filter((country) =>
-        country.toLowerCase().includes(value.toLowerCase()),
-      ),
-    );
-  };
-
   return (
     <div className="flex min-h-screen flex-col">
       <div className="globe-container">
@@ -66,29 +47,9 @@ export function LandingPage() {
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
-                <Select
-                  onValueChange={(value) => console.log(`Selected: ${value}`)}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Search for a country" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <div className="flex items-center border-b px-3 pb-2">
-                      <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                      <Input
-                        placeholder="Search..."
-                        className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                        value={searchTerm}
-                        onChange={(e) => handleSearch(e.target.value)}
-                      />
-                    </div>
-                    {filteredCountries.map((country) => (
-                      <SelectItem key={country} value={country}>
-                        {country}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <NationSearch />
+                </React.Suspense>
                 <p className="text-xs text-muted-foreground">
                   Select a country to view its detailed information
                 </p>
@@ -212,4 +173,9 @@ export function LandingPage() {
       </footer>
     </div>
   );
+}
+
+async function NationSearch() {
+  const allNations = await getAllNations();
+  return <ClientNationsDropdown allNations={allNations} />;
 }

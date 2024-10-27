@@ -19,20 +19,27 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
+const sizeSet = {
+  normal: "w-64",
+  big: "w-62 md:w-96",
+};
+
 export function NationsDropdown({
   allNations,
   onSet,
   initialValue = "",
+  size = "normal",
 }: {
   allNations: { id: string; code: string; name: string; slug: string }[];
-  onSet: (code: string) => void;
+  onSet?: (code: string) => void;
   initialValue?: string;
+  size?: "normal" | "big";
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
 
   React.useEffect(() => {
-    onSet(value ? value : "");
+    onSet && onSet(value ? value : "");
   }, [value]);
 
   return (
@@ -42,7 +49,7 @@ export function NationsDropdown({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-64 justify-between"
+          className={`${sizeSet[size]} justify-between`}
         >
           {value
             ? allNations.find((nations) => nations.code === value)?.name
@@ -50,7 +57,7 @@ export function NationsDropdown({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-64 p-0">
+      <PopoverContent className={`${sizeSet[size]} p-0`}>
         <Command>
           <CommandInput placeholder="Cari Negara..." />
           <CommandList>
