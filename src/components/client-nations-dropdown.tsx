@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { NationsDropdown } from "./nations-dropdown";
+import { useState } from "react";
 
 export function ClientNationsDropdown({
   allNations,
@@ -9,12 +10,20 @@ export function ClientNationsDropdown({
   allNations: { id: string; code: string; name: string; slug: string }[];
 }) {
   const router = useRouter();
+  const [disabled, setDisabled] = useState(false);
 
   function handleSet(code: string) {
-    if (code) router.push(`/compare?nations=${code}`);
+    if (!code) return;
+    router.push(`/compare?nations=${code}`);
+    setDisabled(true);
   }
 
   return (
-    <NationsDropdown onSet={handleSet} size="big" allNations={allNations} />
+    <NationsDropdown
+      disabled={disabled}
+      onSet={handleSet}
+      size="big"
+      allNations={allNations}
+    />
   );
 }

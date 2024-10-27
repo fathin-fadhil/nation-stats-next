@@ -31,11 +31,13 @@ export function NationsDropdown({
   onSet,
   initialValue = "",
   size = "normal",
+  disabled = false,
 }: {
   allNations: Nation[];
   onSet?: (code: string) => void;
   initialValue?: string;
   size?: "normal" | "big";
+  disabled?: boolean;
 }) {
   const init =
     allNations.find((nations) => nations.code === initialValue) || null;
@@ -48,7 +50,7 @@ export function NationsDropdown({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild disabled={disabled}>
         <Button
           variant="outline"
           role="combobox"
