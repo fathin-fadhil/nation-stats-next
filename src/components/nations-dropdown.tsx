@@ -24,22 +24,26 @@ const sizeSet = {
   big: "w-62 md:w-96",
 };
 
+type Nation = { id: string; code: string; name: string; slug: string };
+
 export function NationsDropdown({
   allNations,
   onSet,
   initialValue = "",
   size = "normal",
 }: {
-  allNations: { id: string; code: string; name: string; slug: string }[];
+  allNations: Nation[];
   onSet?: (code: string) => void;
   initialValue?: string;
   size?: "normal" | "big";
 }) {
+  const init =
+    allNations.find((nations) => nations.code === initialValue) || null;
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState<Nation | null>(init);
 
   React.useEffect(() => {
-    onSet && onSet(value ? value : "");
+    onSet && onSet(value?.code ? value.code : "");
   }, [value]);
 
   return (
@@ -52,7 +56,7 @@ export function NationsDropdown({
           className={`${sizeSet[size]} justify-between`}
         >
           {value
-            ? allNations.find((nations) => nations.code === value)?.name
+            ? allNations.find((nations) => nations.code === value.code)?.name
             : "Pilih Negara"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -65,29 +69,27 @@ export function NationsDropdown({
             <CommandGroup>
               {allNations.map((nation) => (
                 <CommandItem
-                  key={nation.code}
-                  value={nation.code}
+                  key={nation.id}
+                  value={nation.name}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setValue(currentValue === value?.name ? null : nation);
                     setOpen(false);
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === nation.code ? "opacity-100" : "opacity-0",
+                      value?.code === nation.code ? "opacity-100" : "opacity-0",
                     )}
                   />
-                  <span className="flex gap-2">
-                    <div className="flex items-center">
-                      <img
-                        src={` https://flagcdn.com/w20/${nation.code}.png `}
-                        width={20}
-                        className="h-fit"
-                      ></img>
-                    </div>
-                    {nation.name}
-                  </span>
+                  <div className="flex items-center">
+                    <img
+                      src={` https://flagcdn.com/w20/${nation.code}.png `}
+                      width={20}
+                      className="h-fit"
+                    ></img>
+                  </div>
+                  {nation.name}
                 </CommandItem>
               ))}
             </CommandGroup>
