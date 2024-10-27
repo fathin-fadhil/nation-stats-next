@@ -2,7 +2,11 @@
 
 import { asyncCatchError } from "~/lib/utils";
 import { db } from "../db";
-import { InferSelectModel } from "drizzle-orm";
+
+export type Nation = Exclude<
+  Awaited<ReturnType<typeof getNationData>>["nation"],
+  null
+>;
 
 export async function getNationData(nationCode: string) {
   const [err, nation] = await asyncCatchError(

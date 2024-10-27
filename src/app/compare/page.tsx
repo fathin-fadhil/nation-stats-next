@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { SearchNations } from "./SearchNations";
+import { NationCard } from "./NationCard";
 
 export default async function ComparePage({
   searchParams,
@@ -39,20 +40,13 @@ export default async function ComparePage({
             ? nationsData[0]?.nation?.name
             : "Bandingkan Negara"}
         </h1>
-        <main className="mx-auto w-full max-w-5xl flex-col px-4">
+        <main className="mx-auto flex w-full max-w-5xl flex-col px-4">
           <SearchNations allNations={allNations} />
-          <Card>
-            <CardHeader>
-              <CardTitle>{searchParams.nations}</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-              <p>Card Footer</p>
-            </CardFooter>
-          </Card>
+          <div className="flex justify-center gap-2">
+            {nationsData.map((nationData) => (
+              <NationCard nation={nationData.nation!} />
+            ))}
+          </div>
         </main>
       </div>
     </div>

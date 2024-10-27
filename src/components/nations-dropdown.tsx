@@ -21,7 +21,7 @@ import {
 
 const sizeSet = {
   normal: "w-64",
-  big: "w-62 md:w-96",
+  big: "w-64 md:w-96",
 };
 
 type Nation = { id: string; code: string; name: string; slug: string };
@@ -32,12 +32,14 @@ export function NationsDropdown({
   initialValue = "",
   size = "normal",
   disabled = false,
+  customSizeClass,
 }: {
   allNations: Nation[];
   onSet?: (code: string) => void;
   initialValue?: string;
   size?: "normal" | "big";
   disabled?: boolean;
+  customSizeClass?: string;
 }) {
   const init =
     allNations.find((nations) => nations.code === initialValue) || null;
@@ -55,7 +57,7 @@ export function NationsDropdown({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`${sizeSet[size]} justify-between`}
+          className={`${customSizeClass ? customSizeClass : sizeSet[size]} justify-between`}
         >
           {value
             ? allNations.find((nations) => nations.code === value.code)?.name
@@ -63,7 +65,9 @@ export function NationsDropdown({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className={`${sizeSet[size]} p-0`}>
+      <PopoverContent
+        className={`${customSizeClass ? customSizeClass : sizeSet[size]} p-0`}
+      >
         <Command>
           <CommandInput placeholder="Cari Negara..." />
           <CommandList>
