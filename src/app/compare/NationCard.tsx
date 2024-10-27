@@ -306,7 +306,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             {nations.map((nation) => (
               <td
                 key={nation.id + "demoidx"}
-                className="w-[50%] px-2 align-top"
+                className="w-[50%] px-2 align-top text-sm md:text-base"
               >
                 <span className="mb-1 flex flex-col items-center justify-center gap-1 text-sm font-medium md:mb-2 md:flex-row lg:text-base">
                   <ScrollText className="h-5 w-5 text-gray-500" />
@@ -331,6 +331,42 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 </div>
               </td>
             ))}
+          </tr>
+          <tr>
+            {nations.map((nation) => {
+              const rolIdxText = nation.RuleOfLawIndex?.split(" ")[0] || "0";
+              const rolIdxVal = parseFloat(rolIdxText.replace(",", "."));
+              const rank = nation.RuleOfLawIndex?.split(" ")[1] || null;
+
+              return (
+                <td
+                  key={nation.id + "rolidx"}
+                  className="w-[50%] px-2 pt-6 align-top text-sm md:text-base"
+                >
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
+                    <Scale className="h-5 w-5 text-gray-500" />
+                    <span className="cursor-pointer hover:underline">
+                      Indeks Supremasi Hukum
+                      <ExternalLink className="ms-1 inline size-3" />
+                    </span>
+                  </span>
+                  <p className="text-center">
+                    {rank ? `Rank ${rank}` : "Data tidak ditemukan"}
+                  </p>
+                  <Progress
+                    colorClass="bg-purple-600"
+                    className="bg-gray-300"
+                    value={rolIdxVal * 100}
+                    max={100}
+                  />
+                  <div className="flex justify-between">
+                    <span className="text-sm">0</span>
+                    <span>{rolIdxText}</span>
+                    <span className="text-sm">1</span>
+                  </div>
+                </td>
+              );
+            })}
           </tr>
         </tbody>
       </table>
