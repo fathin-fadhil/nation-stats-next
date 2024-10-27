@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NationsDropdown } from "~/components/nations-dropdown";
 import { Button } from "~/components/ui/button";
 
@@ -10,8 +10,11 @@ export function SearchNations({
 }: {
   allNations: { id: string; code: string; name: string; slug: string }[];
 }) {
-  const [selectedNationCode, setSelectedNationCode] = useState<string[]>([]);
+  const params = useSearchParams();
   const router = useRouter();
+  const [selectedNationCode, setSelectedNationCode] = useState<string[]>(
+    params.getAll("nations"),
+  );
 
   function handleSelectNationOne(code: string) {
     const newArr = [...selectedNationCode];
@@ -25,10 +28,6 @@ export function SearchNations({
     setSelectedNationCode(newArr);
   }
 
-  useEffect(() => {
-    console.log(selectedNationCode);
-  }, [selectedNationCode]);
-
   function handleSearch() {
     let url = `/compare?`;
     if (!(selectedNationCode[0] || selectedNationCode[1])) return;
@@ -39,8 +38,16 @@ export function SearchNations({
 
   return (
     <div className="flex justify-center gap-2 py-2">
-      <NationsDropdown onSet={handleSelectNationOne} allNations={allNations} />
-      <NationsDropdown onSet={handleSelectNationTwo} allNations={allNations} />
+      <NationsDropdown
+        initialValue={selectedNationCode[0] || ""}
+        onSet={handleSelectNationOne}
+        allNations={allNations}
+      />
+      <NationsDropdown
+        initialValue={selectedNationCode[1] || ""}
+        onSet={handleSelectNationTwo}
+        allNations={allNations}
+      />
       <Button onClick={handleSearch}>Cari!</Button>
     </div>
   );

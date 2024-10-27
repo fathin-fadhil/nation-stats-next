@@ -22,12 +22,14 @@ import {
 export function NationsDropdown({
   allNations,
   onSet,
+  initialValue = "",
 }: {
   allNations: { id: string; code: string; name: string; slug: string }[];
   onSet: (code: string) => void;
+  initialValue?: string;
 }) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(initialValue);
 
   React.useEffect(() => {
     onSet(value ? value : "");
