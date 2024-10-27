@@ -5,6 +5,7 @@ import {
   ExternalLink,
   Globe2,
   Scale,
+  ScrollText,
   UserRound,
   Users,
 } from "lucide-react";
@@ -140,7 +141,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
         <thead>
           <tr>
             {nations.map((nation) => (
-              <th className="w-[50%]">
+              <th key={nation.id + "head"} className="w-[50%]">
                 <CardTitle className="text-xl font-bold lg:text-2xl">
                   <img
                     src={` https://flagcdn.com/h120/${nation.code}.png `}
@@ -163,7 +164,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id} className="w-[50%]">
+              <td key={nation.id + "desc"} className="w-[50%]">
                 <ScrollArea
                   type="always"
                   className="h-80 w-full rounded-md border p-2 md:h-56 md:p-4"
@@ -186,7 +187,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id} className="w-[50%]">
+              <td key={nation.id + "govform"} className="w-[50%]">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Building2 className="h-5 w-5 text-gray-500" />
@@ -212,7 +213,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id} className="w-[50%] pt-6">
+              <td key={nation.id + "hos"} className="w-[50%] pt-6">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Crown className="h-5 w-5 text-gray-500" />
@@ -238,7 +239,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id} className="w-[50%] pt-6">
+              <td key={nation.id + "hog"} className="w-[50%] pt-6">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <UserRound className="h-5 w-5 text-gray-500" />
@@ -271,10 +272,11 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id} className="w-[50%] align-top">
+              <td key={nation.id + "parties"} className="w-[50%] align-top">
                 <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] p-1 md:p-2">
                   {nation.parties.map((party, i) => (
                     <div
+                      key={party.id}
                       className={`flex items-center gap-1 ${nation.parties.length - 1 !== i && "border-b-[1px]"} px-1 py-2 md:gap-2 md:px-2 md:py-4`}
                     >
                       <img
