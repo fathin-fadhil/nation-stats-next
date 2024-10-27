@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Input } from "~/components/ui/input";
+import { Header } from "./header";
 
 // This is a mock list of countries. In a real application, you'd fetch this from an API or database.
 const countries = [
@@ -49,32 +50,7 @@ export function LandingPage() {
           className="h-full w-full object-cover opacity-60"
         />
       </div>
-      <header className="fixed left-0 right-0 top-0 z-10 flex h-14 items-center border-b-[1px] bg-white/50 px-4 backdrop-blur-lg lg:px-6">
-        <a className="flex items-center justify-center" href="#">
-          <Globe2 className="h-6 w-6" />
-          <span className="ml-2 text-2xl font-bold">NationStats</span>
-        </a>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <a
-            className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
-          >
-            Features
-          </a>
-          <a
-            className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
-          >
-            About
-          </a>
-          <a
-            className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
-          >
-            Contact
-          </a>
-        </nav>
-      </header>
+      <Header />
       <main className="flex-1 pt-10">
         <section className="relative flex w-full justify-center bg-gradient-to-t from-gray-100 to-transparent py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
