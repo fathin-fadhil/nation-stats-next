@@ -173,8 +173,8 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             ))}
           </tr>
           <tr>
-            <td colSpan={nations.length} className="pt-4">
-              <h3 className="mb-2 text-center text-lg font-semibold">
+            <td colSpan={nations.length} className="pb-3 pt-6">
+              <h3 className="text-center text-lg font-semibold">
                 Pemerintahan
               </h3>
             </td>
@@ -258,8 +258,8 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             ))}
           </tr>
           <tr>
-            <td colSpan={nations.length} className="pt-4">
-              <h3 className="mb-2 text-center text-lg font-semibold">
+            <td colSpan={nations.length} className="pb-3 pt-6">
+              <h3 className="text-center text-lg font-semibold">
                 Partai Populer
               </h3>
             </td>
