@@ -187,7 +187,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     <Building2 className="h-5 w-5 text-gray-500" />
                     Bentuk Pemerintahan:
                   </span>
-                  <span className="lg:textbase inline-flex flex-wrap gap-2 text-sm">
+                  <span className="lg:textbase inline-flex flex-wrap gap-1 text-sm md:gap-2">
                     {nation.governmentForms.map(({ governmentForm }) => (
                       <Badge
                         key={governmentForm.id}
@@ -213,7 +213,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     <Crown className="h-5 w-5 text-gray-500" />
                     Kepala Negara:
                   </span>
-                  <span className="lg:textbase inline-flex flex-wrap gap-2 text-sm">
+                  <span className="lg:textbase inline-flex flex-wrap gap-1 text-sm md:gap-2">
                     <Badge
                       key={nation.headOfStates?.id}
                       style={{
@@ -239,7 +239,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     <UserRound className="h-5 w-5 text-gray-500" />
                     Kepala Pemerintahan:
                   </span>
-                  <span className="lg:textbase inline-flex flex-wrap gap-2 text-sm">
+                  <span className="lg:textbase inline-flex flex-wrap gap-1 text-sm md:gap-2">
                     <Badge
                       key={nation.headOfGovernments?.id}
                       style={{
@@ -253,6 +253,36 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                       <ExternalLink className="size-4" />
                     </Badge>
                   </span>
+                </div>
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td colSpan={nations.length} className="pt-4">
+              <h3 className="mb-2 text-center text-lg font-semibold">
+                Partai Populer
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            {nations.map((nation) => (
+              <td key={nation.id} className="w-[50%] align-top">
+                <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] p-1 md:p-2">
+                  {nation.parties.map((party, i) => (
+                    <div
+                      className={`flex items-center gap-1 ${nation.parties.length - 1 !== i && "border-b-[1px]"} px-1 py-2 md:gap-2 md:px-2 md:py-4`}
+                    >
+                      <img
+                        src={party.logoUrl!}
+                        height={40}
+                        width={40}
+                        className=""
+                      />
+                      <span className="text-sm font-medium lg:text-base">
+                        {party.name}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </td>
             ))}
