@@ -199,7 +199,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     <Building2 className="h-5 w-5 text-gray-500" />
                     Bentuk Pemerintahan:
                   </span>
-                  <span className="lg:textbase inline-flex flex-wrap gap-1 text-sm md:gap-2">
+                  <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
                     {nation.governmentForms.map(({ governmentForm }) => (
                       <Badge
                         key={governmentForm.id}
@@ -225,7 +225,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     <Crown className="h-5 w-5 text-gray-500" />
                     Kepala Negara:
                   </span>
-                  <span className="lg:textbase inline-flex flex-wrap gap-1 text-sm md:gap-2">
+                  <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
                     <Badge
                       key={nation.headOfStates?.id}
                       style={{
@@ -251,7 +251,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     <UserRound className="h-5 w-5 text-gray-500" />
                     Kepala Pemerintahan:
                   </span>
-                  <span className="lg:textbase inline-flex flex-wrap gap-1 text-sm md:gap-2">
+                  <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
                     <Badge
                       key={nation.headOfGovernments?.id}
                       style={{
@@ -315,7 +315,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
               >
                 <span className="mb-1 flex flex-col items-center justify-center gap-1 text-sm font-medium md:mb-2 md:flex-row lg:text-base">
                   <ScrollText className="h-5 w-5 text-gray-500" />
-                  <span className="cursor-pointer hover:underline">
+                  <span className="cursor-pointer text-center hover:underline">
                     Indeks Demokrasi
                     <ExternalLink className="ms-1 inline size-3" />
                   </span>
@@ -350,7 +350,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Scale className="h-5 w-5 text-gray-500" />
-                    <span className="cursor-pointer hover:underline">
+                    <span className="cursor-pointer text-center hover:underline">
                       Indeks Supremasi Hukum
                       <ExternalLink className="ms-1 inline size-3" />
                     </span>
@@ -387,7 +387,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <HandCoins className="h-5 w-5 text-gray-500" />
-                    <span className="cursor-pointer hover:underline">
+                    <span className="cursor-pointer text-center hover:underline">
                       Indeks Persepsi Korupsi
                       <ExternalLink className="ms-1 inline size-3" />
                     </span>
@@ -424,7 +424,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <PersonStanding className="h-5 w-5 text-gray-500" />
-                    <span className="cursor-pointer hover:underline">
+                    <span className="cursor-pointer text-center hover:underline">
                       Indeks Pembangunan Manusia
                       <ExternalLink className="ms-1 inline size-3" />
                     </span>
