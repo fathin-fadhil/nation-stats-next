@@ -4,6 +4,8 @@ import {
   Crown,
   ExternalLink,
   Globe2,
+  HandCoins,
+  PersonStanding,
   Scale,
   ScrollText,
   UserRound,
@@ -170,11 +172,14 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                   type="always"
                   className="h-80 w-full rounded-md border p-2 md:h-56 md:p-4"
                 >
-                  {nation.description
-                    ?.split("\n")
-                    .map((desc) => (
-                      <p className="mb-2 text-sm text-gray-600">{desc}</p>
-                    ))}
+                  {nation.description?.split("\n").map((desc, i) => (
+                    <p
+                      key={nation.id + "desc" + i}
+                      className="mb-2 text-sm text-gray-600"
+                    >
+                      {desc}
+                    </p>
+                  ))}
                 </ScrollArea>
               </td>
             ))}
@@ -362,6 +367,80 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                   <div className="flex justify-between">
                     <span className="text-sm">0</span>
                     <span>{rolIdxText}</span>
+                    <span className="text-sm">1</span>
+                  </div>
+                </td>
+              );
+            })}
+          </tr>
+          <tr>
+            {nations.map((nation) => {
+              const corruptionIdxText =
+                nation.corruptionIndex?.split(" ")[0] || "0";
+              const corIdxVal = parseFloat(corruptionIdxText.replace(",", "."));
+              const rank = nation.corruptionIndex?.split(" ")[1] || null;
+
+              return (
+                <td
+                  key={nation.id + "rolidx"}
+                  className="w-[50%] px-2 pt-6 align-top text-sm md:text-base"
+                >
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
+                    <HandCoins className="h-5 w-5 text-gray-500" />
+                    <span className="cursor-pointer hover:underline">
+                      Indeks Persepsi Korupsi
+                      <ExternalLink className="ms-1 inline size-3" />
+                    </span>
+                  </span>
+                  <p className="text-center">
+                    {rank ? `Rank ${rank}` : "Data tidak ditemukan"}
+                  </p>
+                  <Progress
+                    colorClass="bg-green-600"
+                    className="bg-gray-300"
+                    value={corIdxVal}
+                    max={100}
+                  />
+                  <div className="flex justify-between">
+                    <span className="text-sm">0</span>
+                    <span>{corruptionIdxText}</span>
+                    <span className="text-sm">100</span>
+                  </div>
+                </td>
+              );
+            })}
+          </tr>
+          <tr>
+            {nations.map((nation) => {
+              const hdiIdxText =
+                nation.humanDevelopmentIndex?.split(" ")[0] || "0";
+              const hdiIdxVal = parseFloat(hdiIdxText.replace(",", "."));
+              const rank = nation.humanDevelopmentIndex?.split(" ")[1] || null;
+
+              return (
+                <td
+                  key={nation.id + "rolidx"}
+                  className="w-[50%] px-2 pt-6 align-top text-sm md:text-base"
+                >
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
+                    <PersonStanding className="h-5 w-5 text-gray-500" />
+                    <span className="cursor-pointer hover:underline">
+                      Indeks Pembangunan Manusia
+                      <ExternalLink className="ms-1 inline size-3" />
+                    </span>
+                  </span>
+                  <p className="text-center">
+                    {rank ? `Rank ${rank}` : "Data tidak ditemukan"}
+                  </p>
+                  <Progress
+                    colorClass="bg-blue-600"
+                    className="bg-gray-300"
+                    value={hdiIdxVal * 100}
+                    max={100}
+                  />
+                  <div className="flex justify-between">
+                    <span className="text-sm">0</span>
+                    <span>{hdiIdxText}</span>
                     <span className="text-sm">1</span>
                   </div>
                 </td>
