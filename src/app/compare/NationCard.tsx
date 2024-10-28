@@ -17,6 +17,12 @@ import { Progress } from "~/components/ui/progress";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { stringToColor } from "~/lib/utils";
 import { Nation } from "~/server/actions/nations";
+import dynamic from "next/dynamic";
+
+const RadarChart = dynamic(() => import("./RadarChart"), {
+  ssr: false,
+  loading: () => <div className="h-96 w-full">Loading Chart</div>,
+});
 
 /* export function NationCard({ nation }: { nation: Nation }) {
   return (
@@ -305,6 +311,11 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
               <h3 className="text-center text-lg font-semibold">
                 Indeks Negara
               </h3>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={nations.length} className="">
+              <RadarChart nations={nations} />
             </td>
           </tr>
           <tr>
