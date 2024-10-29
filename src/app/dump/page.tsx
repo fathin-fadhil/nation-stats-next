@@ -5,7 +5,7 @@ import { DumpForm } from "./DumpForm";
 export default function DumpPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }) {
   if (searchParams?.admin !== env.ADMIN_SECRET) redirect("/");
 

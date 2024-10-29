@@ -15,7 +15,7 @@ import {
 } from "~/server/db/schema";
 
 export async function POST(request: Request) {
-  const token = (request.headers.get("Authorization") as string).split(" ")[1];
+  const token = request.headers.get("Authorization")!.split(" ")[1];
 
   if (token !== env.ADMIN_SECRET)
     return new Response(JSON.stringify({ message: "Unauthorized" }), {

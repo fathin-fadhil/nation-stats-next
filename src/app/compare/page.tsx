@@ -7,7 +7,7 @@ import { NationsGrid } from "./NationCard";
 export default async function ComparePage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }) {
   if (!searchParams.nations) return redirect("/");
 
@@ -15,7 +15,6 @@ export default async function ComparePage({
   if (typeof searchParams.nations === "string")
     nationCodes.push(searchParams.nations);
   else nationCodes = searchParams.nations;
-  console.log("🚀 ~ nationCodes:", nationCodes);
 
   const nationsData = await Promise.all(
     nationCodes.map(async (code) => await getNationData(code)),

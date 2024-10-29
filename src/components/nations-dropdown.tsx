@@ -47,7 +47,7 @@ export function NationsDropdown({
   const [value, setValue] = React.useState<Nation | null>(init);
 
   React.useEffect(() => {
-    onSet && onSet(value?.code ? value.code : "");
+    if (onSet) onSet(value?.code ? value.code : "");
   }, [value]);
 
   return (

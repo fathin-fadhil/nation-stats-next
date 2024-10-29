@@ -6,20 +6,6 @@ import { Header } from "./header";
 import { getAllNations } from "~/server/actions/nations";
 import { ClientNationsDropdown } from "./client-nations-dropdown";
 
-// This is a mock list of countries. In a real application, you'd fetch this from an API or database.
-const countries = [
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-  "Germany",
-  "France",
-  "Japan",
-  "Brazil",
-  "India",
-  "South Africa",
-].sort();
-
 export function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -143,7 +129,7 @@ export function LandingPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Ready to Explore the World's Nations?
+                  Ready to Explore the World&apos;s Nations?
                 </h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl">
                   Start comparing countries and discovering fascinating insights

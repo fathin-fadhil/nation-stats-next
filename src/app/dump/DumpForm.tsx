@@ -6,27 +6,28 @@ import { useFormState, useFormStatus } from "react-dom";
 export function DumpForm() {
   const searchParams = useSearchParams();
 
-  const [data, handleSubmit] = useFormState(
-    async (_: any, formData: FormData) => {
-      const data = formData.get("json_input");
-      try {
-        const res = await fetch("/api/dump", {
-          method: "POST",
-          body: data,
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${searchParams.get("admin")}`,
-          },
-        });
+  const [data, handleSubmit]: [
+    unknown,
+    (payload: FormData) => void,
+    isPending: boolean,
+  ] = useFormState(async (_: unknown, formData: FormData) => {
+    const data = formData.get("json_input");
+    try {
+      const res = await fetch("/api/dump", {
+        method: "POST",
+        body: data,
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${searchParams.get("admin")}`,
+        },
+      });
 
-        return await res.json();
-      } catch (error) {
-        return error;
-      }
-    },
-    {},
-  );
+      return (await res.json()) as unknown;
+    } catch (error) {
+      return error;
+    }
+  }, {});
 
   return (
     <>
