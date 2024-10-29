@@ -27,9 +27,7 @@ export default async function ComparePage({
       <Header />
       <div className="mt-14">
         <h1 className="pt-3 text-center text-3xl font-bold">
-          {nationsData.length === 1
-            ? nationsData[0]?.nation?.name
-            : "Bandingkan Negara"}
+          {nationsData.length === 1 ? "Eksplore Negara" : "Bandingkan Negara"}
         </h1>
         <main className="mx-auto flex w-full max-w-5xl flex-col px-4">
           <SearchNations allNations={allNations} />
