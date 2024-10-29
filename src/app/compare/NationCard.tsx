@@ -1,15 +1,12 @@
 import {
-  BarChart,
   Building2,
   Crown,
   ExternalLink,
-  Globe2,
   HandCoins,
   PersonStanding,
   Scale,
   ScrollText,
   UserRound,
-  Users,
 } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";

@@ -1,14 +1,6 @@
 import { redirect } from "next/navigation";
 import { getAllNations, getNationData } from "~/server/actions/nations";
 import { Header } from "~/components/header";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
 import { SearchNations } from "./SearchNations";
 import { NationsGrid } from "./NationCard";
 

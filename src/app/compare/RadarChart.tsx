@@ -2,13 +2,7 @@
 import { type Nation } from "~/server/actions/nations";
 import { useECharts } from "@kbox-labs/react-echarts";
 import { type UseEChartsOptions } from "@kbox-labs/react-echarts";
-import {
-  startTransition,
-  useEffect,
-  useRef,
-  useState,
-  useTransition,
-} from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import { stringToRGBA } from "~/lib/utils";
 
 function getChartOption(
