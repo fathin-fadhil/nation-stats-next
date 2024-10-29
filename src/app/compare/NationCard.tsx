@@ -15,130 +15,12 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import { stringToColor } from "~/lib/utils";
 import { Nation } from "~/server/actions/nations";
 import dynamic from "next/dynamic";
+import { ContextComponent } from "./ContextComponent";
 
 const RadarChart = dynamic(() => import("./RadarChart"), {
   ssr: false,
   loading: () => <div className="h-96 w-full">Loading Chart</div>,
 });
-
-/* export function NationCard({ nation }: { nation: Nation }) {
-  return (
-    <div>
-      <CardContent className="p-0">
-        <section>
-          <h3 className="mb-2 font-semibold lg:text-lg">Deskripsi</h3>
-          <ScrollArea
-            type="always"
-            className="h-64 w-full rounded-md border p-2 md:h-56 md:p-4"
-          >
-            {nation.description
-              ?.split("\n")
-              .map((desc) => (
-                <p className="mb-2 text-sm text-gray-600">{desc}</p>
-              ))}
-          </ScrollArea>
-        </section>
-
-        <section>
-          <h3 className="mb-2 font-semibold lg:text-lg">Government</h3>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <Building2 className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Government Form:
-              </span>
-              <span className="lg:textbase text-sm">
-                {nation.governmentForms.map((form) => form.governmentForm.name)}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Users className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Head of State:
-              </span>
-              <span className="text-sm lg:text-base">
-                {nation?.headOfStates?.name}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Users className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Head of Government:
-              </span>
-              <span className="text-sm lg:text-base">
-                {nation?.headOfGovernments?.name}
-              </span>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h3 className="mb-2 font-semibold lg:text-lg">Political Parties</h3>
-          <ScrollArea className="h-[200px] w-full rounded-md border p-4">
-            <div className="space-y-4">
-              {nation.parties.map((party) => (
-                <div key={party.id} className="flex items-center space-x-2">
-                  {party.logoUrl && (
-                    <img
-                      src={party.logoUrl}
-                      alt={`${party.name} logo`}
-                      width={40}
-                      height={40}
-                      className="rounded-full"
-                    />
-                  )}
-                  <span className="text-sm lg:text-base">{party.name}</span>
-                </div>
-              ))}
-            </div>
-          </ScrollArea>
-        </section>
-
-        <section>
-          <h3 className="mb-2 text-sm font-semibold lg:text-lg">Indices</h3>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <Globe2 className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Democracy Index:
-              </span>
-              <span className="text-sm lg:text-base">
-                {nation.democracyIndex}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Scale className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Rule of Law Index:
-              </span>
-              <span className="text-sm lg:text-base">
-                {nation.RuleOfLawIndex}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <BarChart className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Corruption Index:
-              </span>
-              <span className="text-sm lg:text-base">
-                {nation.corruptionIndex}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Users className="h-5 w-5 text-gray-500" />
-              <span className="text-sm font-semibold lg:text-base">
-                Human Development Index:
-              </span>
-              <span className="text-sm lg:text-base">
-                {nation.humanDevelopmentIndex}
-              </span>
-            </div>
-          </div>
-        </section>
-      </CardContent>
-    </div>
-  );
-} */
 
 export function NationsGrid({ nations }: { nations: Nation[] }) {
   return (
@@ -204,16 +86,26 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                   </span>
                   <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
                     {nation.governmentForms.map(({ governmentForm }) => (
-                      <Badge
+                      <ContextComponent
                         key={governmentForm.id}
-                        style={{
-                          backgroundColor: stringToColor(governmentForm.name),
-                        }}
-                        className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
-                      >
-                        {governmentForm.name}
-                        <ExternalLink className="size-4" />
-                      </Badge>
+                        TriggerComponent={
+                          <Badge
+                            style={{
+                              backgroundColor: stringToColor(
+                                governmentForm.name,
+                              ),
+                            }}
+                            className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                          >
+                            {governmentForm.name}
+                            <ExternalLink className="size-4" />
+                          </Badge>
+                        }
+                        TitleComponent={
+                          "Bentuk Pemerintah " + governmentForm.name
+                        }
+                        ContentComponent="Consectetur irure sint sunt eu quis ipsum anim aute ullamco deserunt officia. Incididunt cillum sint deserunt qui. Culpa ullamco do elit nulla ad. Ullamco id incididunt anim voluptate culpa veniam. Occaecat cupidatat ullamco eu labore cupidatat excepteur commodo. Minim ad magna mollit consectetur reprehenderit quis nisi non."
+                      />
                     ))}
                   </span>
                 </div>
@@ -229,18 +121,27 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     Kepala Negara:
                   </span>
                   <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
-                    <Badge
-                      key={nation.headOfStates?.id}
-                      style={{
-                        backgroundColor: stringToColor(
-                          nation.headOfStates?.name || "",
-                        ),
-                      }}
-                      className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
-                    >
-                      {nation.headOfStates?.name || "Data tidak tersedia"}
-                      <ExternalLink className="size-4" />
-                    </Badge>
+                    <ContextComponent
+                      TriggerComponent={
+                        <Badge
+                          key={nation.headOfStates?.id}
+                          style={{
+                            backgroundColor: stringToColor(
+                              nation.headOfStates?.name || "",
+                            ),
+                          }}
+                          className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                        >
+                          {nation.headOfStates?.name || "Data tidak tersedia"}
+                          <ExternalLink className="size-4" />
+                        </Badge>
+                      }
+                      ContentComponent="Consectetur irure sint sunt eu quis ipsum anim aute ullamco deserunt officia. Incididunt cillum sint deserunt qui. Culpa ullamco do elit nulla ad. Ullamco id incididunt anim voluptate culpa veniam. Occaecat cupidatat ullamco eu labore cupidatat excepteur commodo. Minim ad magna mollit consectetur reprehenderit quis nisi non."
+                      TitleComponent={
+                        "Kepala Negara: " + nation.headOfStates?.name ||
+                        "Data tidak tersedia"
+                      }
+                    />
                   </span>
                 </div>
               </td>
@@ -255,18 +156,29 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     Kepala Pemerintahan:
                   </span>
                   <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
-                    <Badge
-                      key={nation.headOfGovernments?.id}
-                      style={{
-                        backgroundColor: stringToColor(
-                          nation.headOfGovernments?.name || "",
-                        ),
-                      }}
-                      className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
-                    >
-                      {nation.headOfGovernments?.name || "Data tidak tersedia"}
-                      <ExternalLink className="size-4" />
-                    </Badge>
+                    <ContextComponent
+                      TriggerComponent={
+                        <Badge
+                          key={nation.headOfGovernments?.id}
+                          style={{
+                            backgroundColor: stringToColor(
+                              nation.headOfGovernments?.name || "",
+                            ),
+                          }}
+                          className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                        >
+                          {nation.headOfGovernments?.name ||
+                            "Data tidak tersedia"}
+                          <ExternalLink className="size-4" />
+                        </Badge>
+                      }
+                      ContentComponent="Consectetur irure sint sunt eu quis ipsum anim aute ullamco deserunt officia. Incididunt cillum sint deserunt qui. Culpa ullamco do elit nulla ad. Ullamco id incididunt anim voluptate culpa veniam. Occaecat cupidatat ullamco eu labore cupidatat excepteur commodo. Minim ad magna mollit consectetur reprehenderit quis nisi non."
+                      TitleComponent={
+                        "Kepala Pemerintah: " +
+                          nation.headOfGovernments?.name ||
+                        "Data tidak tersedia"
+                      }
+                    />
                   </span>
                 </div>
               </td>
