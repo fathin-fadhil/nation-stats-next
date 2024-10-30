@@ -16,6 +16,7 @@ import { stringToColor } from "~/lib/utils";
 import { Nation } from "~/server/actions/nations";
 import dynamic from "next/dynamic";
 import { ContextComponent } from "./ContextComponent";
+import IndexDescription from "./IndexDescription.json";
 
 const RadarChart = dynamic(() => import("./RadarChart"), {
   ssr: false,
@@ -244,10 +245,36 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
               >
                 <span className="mb-1 flex flex-col items-center justify-center gap-1 text-sm font-medium md:mb-2 md:flex-row lg:text-base">
                   <ScrollText className="h-5 w-5 text-gray-500" />
-                  <span className="cursor-pointer text-center hover:underline">
-                    Indeks Demokrasi
-                    <ExternalLink className="ms-1 inline size-3" />
-                  </span>
+                  <ContextComponent
+                    TriggerComponent={
+                      <span className="cursor-pointer text-center hover:underline">
+                        Indeks Demokrasi
+                        <ExternalLink className="ms-1 inline size-3" />
+                      </span>
+                    }
+                    TitleComponent={"Indeks Demokrasi"}
+                    ContentComponent={
+                      <div>
+                        <p className="mb-4">
+                          {IndexDescription.democracyIndex.desc ||
+                            "Data tidak ditemukan"}
+                        </p>
+                        <p className="inline">
+                          Sumber:
+                          <a
+                            className="ms-1 inline text-blue-500 hover:underline"
+                            target="_blank"
+                            href={IndexDescription.democracyIndex.source}
+                          >
+                            <span className="inline-flex items-center">
+                              EIU
+                              <ExternalLink className="ms-1 inline h-4 w-4" />
+                            </span>
+                          </a>{" "}
+                        </p>
+                      </div>
+                    }
+                  />
                 </span>
                 <Progress
                   colorClass="bg-red-600"
@@ -279,10 +306,36 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Scale className="h-5 w-5 text-gray-500" />
-                    <span className="cursor-pointer text-center hover:underline">
-                      Indeks Supremasi Hukum
-                      <ExternalLink className="ms-1 inline size-3" />
-                    </span>
+                    <ContextComponent
+                      TriggerComponent={
+                        <span className="cursor-pointer text-center hover:underline">
+                          Indeks Supremasi Hukum
+                          <ExternalLink className="ms-1 inline size-3" />
+                        </span>
+                      }
+                      TitleComponent={"Indeks Supremasi Hukum"}
+                      ContentComponent={
+                        <div>
+                          <p className="mb-4">
+                            {IndexDescription.ROLIndex.desc ||
+                              "Data tidak ditemukan"}
+                          </p>
+                          <p className="inline">
+                            Sumber:
+                            <a
+                              className="ms-1 inline text-blue-500 hover:underline"
+                              target="_blank"
+                              href={IndexDescription.ROLIndex.source}
+                            >
+                              <span className="inline-flex items-center">
+                                WJP
+                                <ExternalLink className="ms-1 inline h-4 w-4" />
+                              </span>
+                            </a>{" "}
+                          </p>
+                        </div>
+                      }
+                    />
                   </span>
                   <p className="text-center">
                     {rank ? `Rank ${rank}` : "Data tidak ditemukan"}
@@ -316,10 +369,38 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <HandCoins className="h-5 w-5 text-gray-500" />
-                    <span className="cursor-pointer text-center hover:underline">
-                      Indeks Persepsi Korupsi
-                      <ExternalLink className="ms-1 inline size-3" />
-                    </span>
+                    <ContextComponent
+                      TriggerComponent={
+                        <span className="cursor-pointer text-center hover:underline">
+                          Indeks Persepsi Korupsi
+                          <ExternalLink className="ms-1 inline size-3" />
+                        </span>
+                      }
+                      TitleComponent={"Indeks Persepsei Korupsi"}
+                      ContentComponent={
+                        <div>
+                          <p className="mb-4">
+                            {IndexDescription.CorruptionPerception.desc ||
+                              "Data tidak ditemukan"}
+                          </p>
+                          <p className="inline">
+                            Sumber:
+                            <a
+                              className="ms-1 inline text-blue-500 hover:underline"
+                              target="_blank"
+                              href={
+                                IndexDescription.CorruptionPerception.source
+                              }
+                            >
+                              <span className="inline-flex items-center">
+                                Transparency International
+                                <ExternalLink className="ms-1 inline h-4 w-4" />
+                              </span>
+                            </a>{" "}
+                          </p>
+                        </div>
+                      }
+                    />
                   </span>
                   <p className="text-center">
                     {rank ? `Rank ${rank}` : "Data tidak ditemukan"}
@@ -353,10 +434,36 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <PersonStanding className="h-5 w-5 text-gray-500" />
-                    <span className="cursor-pointer text-center hover:underline">
-                      Indeks Pembangunan Manusia
-                      <ExternalLink className="ms-1 inline size-3" />
-                    </span>
+                    <ContextComponent
+                      TriggerComponent={
+                        <span className="cursor-pointer text-center hover:underline">
+                          Indeks Pembangunan Manusia
+                          <ExternalLink className="ms-1 inline size-3" />
+                        </span>
+                      }
+                      TitleComponent={"Indeks Pembangunan Mamusia"}
+                      ContentComponent={
+                        <div>
+                          <p className="mb-4">
+                            {IndexDescription.HDI.desc ||
+                              "Data tidak ditemukan"}
+                          </p>
+                          <p className="inline">
+                            Sumber:
+                            <a
+                              className="ms-1 inline text-blue-500 hover:underline"
+                              target="_blank"
+                              href={IndexDescription.HDI.source}
+                            >
+                              <span className="inline-flex items-center">
+                                HDR
+                                <ExternalLink className="ms-1 inline h-4 w-4" />
+                              </span>
+                            </a>{" "}
+                          </p>
+                        </div>
+                      }
+                    />
                   </span>
                   <p className="text-center">
                     {rank ? `Rank ${rank}` : "Data tidak ditemukan"}

@@ -1,0 +1,18 @@
+{
+  "democracyIndex": {
+    "desc": "Indeks Demokrasi yang disusun oleh Economist Intelligence Unit (EIU) adalah ukuran tahunan yang menilai tingkat demokrasi di berbagai negara berdasarkan lima kategori: proses pemilu dan pluralisme, kebebasan sipil, fungsi pemerintahan, partisipasi politik, dan budaya politik. Setiap kategori diberi skor 0 hingga 10, lalu dirata-rata menjadi skor akhir yang mengelompokkan negara dalam empat tipe rezim: demokrasi penuh, demokrasi cacat, rezim hibrida, dan rezim otoriter. Indeks ini membantu memetakan kualitas demokrasi di seluruh dunia dan memantau perubahan politik global dari waktu ke waktu.",
+    "source": "https://www.eiu.com/n/campaigns/democracy-index-2023/"
+  },
+  "ROLIndex": {
+    "desc": "Rule of Law yang disusun oleh World Justice Project (WJP) adalah indeks yang mengukur kualitas penegakan hukum di berbagai negara berdasarkan delapan faktor: keterbukaan pemerintah, pembatasan kewenangan pemerintah, ketiadaan korupsi, perlindungan hak asasi manusia, penegakan hukum, ketertiban dan keamanan, keadilan perdata, dan keadilan pidana. Data dari survei masyarakat dan pakar hukum digunakan untuk memberi skor pada setiap faktor, yang kemudian dirata-rata menjadi skor keseluruhan. Indeks ini membantu memantau sejauh mana negara-negara menegakkan hukum secara adil dan transparan.",
+    "source": "https://worldjusticeproject.org/rule-of-law-index/global"
+  },
+  "CorruptionPerception": {
+    "desc": "Corruption Perceptions Index (CPI) adalah indeks yang disusun oleh Transparency International untuk mengukur persepsi terhadap tingkat korupsi di sektor publik berbagai negara. Indeks ini berdasarkan survei dan penilaian ahli dari berbagai organisasi yang mengevaluasi pandangan masyarakat dan bisnis terhadap korupsi di lembaga pemerintah. Menggunakan skala dari 0 hingga 100, skor 0 menunjukkan tingkat korupsi yang sangat tinggi, sementara skor 100 menunjukkan minimnya korupsi. CPI mengevaluasi berbagai indikator, termasuk suap, penyalahgunaan kekuasaan, dan efektivitas pengawasan hukum dalam menangani korupsi. Indeks ini membantu memetakan persepsi korupsi di seluruh dunia, memungkinkan pemantauan upaya anti-korupsi global.",
+    "source": "https://worldjusticeproject.org/rule-of-law-index/"
+  },
+  "HDI": {
+    "desc": "Human Development Index (HDI) adalah indeks yang dirancang oleh United Nations Development Programme (UNDP) untuk mengukur kualitas pembangunan manusia di berbagai negara. Indeks ini mempertimbangkan tiga dimensi utama: harapan hidup (sebagai indikator kesehatan), pendidikan (dilihat dari rata-rata dan harapan lama sekolah), serta standar hidup (diukur dari pendapatan nasional bruto per kapita). Setiap dimensi ini diberi nilai yang kemudian digabungkan untuk menghasilkan skor HDI, dengan rentang 0 hingga 1. Skor ini menggambarkan tingkat perkembangan manusia di suatu negara, dari yang sangat rendah hingga sangat tinggi, dan membantu mengidentifikasi kebutuhan prioritas dalam pembangunan manusia global.",
+    "source": "https://hdr.undp.org/data-center/human-development-index"
+  }
+}

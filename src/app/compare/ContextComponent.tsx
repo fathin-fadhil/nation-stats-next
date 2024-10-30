@@ -41,11 +41,14 @@ export function ContextComponent({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{TriggerComponent}</DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent aria-describedby="" className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>{TitleComponent}</DialogTitle>
           </DialogHeader>
           {ContentComponent}
+          <DialogDescription className="hidden">
+            Penjelasan mengenai {TitleComponent}
+          </DialogDescription>
         </DialogContent>
       </Dialog>
     );
