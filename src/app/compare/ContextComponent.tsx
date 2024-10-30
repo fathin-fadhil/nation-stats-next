@@ -52,7 +52,9 @@ export function ContextComponent({
             <DialogTitle>{TitleComponent}</DialogTitle>
           </DialogHeader>
           {ContentComponent}
-          {FooterComponent && <DialogFooter>{FooterComponent}</DialogFooter>}
+          {FooterComponent && (
+            <DialogFooter className="mt-4">{FooterComponent}</DialogFooter>
+          )}
         </DialogContent>
       </Dialog>
     );
