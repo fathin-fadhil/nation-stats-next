@@ -169,6 +169,7 @@ export const governmentForms = createTable("government_form", {
   name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
   description: text("description"),
+  longDescriptionMd: text("long_description_md"),
 });
 
 export const governmentFormsRelations = relations(
@@ -252,6 +253,7 @@ export const headOfStates = createTable("head_of_state", {
   name: varchar("name", { length: 255 }).notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   description: text("description"),
+  longDescriptionMd: text("long_description_md"),
 });
 
 export const headOfStatesRelations = relations(headOfStates, ({ many }) => ({
@@ -267,6 +269,7 @@ export const headOfGovernments = createTable("head_of_government", {
   name: varchar("name", { length: 255 }).notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   description: text("description"),
+  longDescriptionMd: text("long_description_md"),
 });
 
 export const headOfGovernmentsRelations = relations(
