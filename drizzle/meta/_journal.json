@@ -15,6 +15,13 @@
       "when": 1730297638936,
       "tag": "0001_nifty_ben_urich",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1730312337037,
+      "tag": "0002_normal_mystique",
+      "breakpoints": true
     }
   ]
 }
