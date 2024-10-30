@@ -45,13 +45,13 @@ export function ContextComponent({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{TriggerComponent}</DialogTrigger>
         <DialogContent aria-describedby="" className="gap-0 sm:max-w-[425px]">
+          <DialogDescription className="hidden">
+            Penjelasan mengenai {TitleComponent}
+          </DialogDescription>
           <DialogHeader className="mb-4">
             <DialogTitle>{TitleComponent}</DialogTitle>
           </DialogHeader>
           {ContentComponent}
-          <DialogDescription className="hidden">
-            Penjelasan mengenai {TitleComponent}
-          </DialogDescription>
           {FooterComponent && <DialogFooter>{FooterComponent}</DialogFooter>}
         </DialogContent>
       </Dialog>
