@@ -17,6 +17,8 @@ import { Nation } from "~/server/actions/nations";
 import dynamic from "next/dynamic";
 import { ContextComponent } from "./ContextComponent";
 import IndexDescription from "./IndexDescription.json";
+import { Button, buttonVariants } from "~/components/ui/button";
+import Link from "next/link";
 
 const RadarChart = dynamic(() => import("./RadarChart"), {
   ssr: false,
@@ -108,6 +110,14 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                         ContentComponent={
                           governmentForm.description ||
                           "Deskripsi tidak tersedia"
+                        }
+                        FooterComponent={
+                          <Link
+                            href={`/government-form/${governmentForm.slug}`}
+                            className={buttonVariants()}
+                          >
+                            Lihat Selengkapnya
+                          </Link>
                         }
                       />
                     ))}

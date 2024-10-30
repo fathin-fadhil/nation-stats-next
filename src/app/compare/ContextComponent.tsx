@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -27,10 +28,12 @@ export function ContextComponent({
   TriggerComponent,
   TitleComponent,
   ContentComponent,
+  FooterComponent,
 }: {
   TriggerComponent: React.ReactNode;
   TitleComponent: React.ReactNode;
   ContentComponent: React.ReactNode;
+  FooterComponent?: React.ReactNode;
 }) {
   const [open, setOpen] = React.useState(false);
   const screenWidth = useScreenWidth();
@@ -41,14 +44,15 @@ export function ContextComponent({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{TriggerComponent}</DialogTrigger>
-        <DialogContent aria-describedby="" className="sm:max-w-[425px]">
-          <DialogHeader>
+        <DialogContent aria-describedby="" className="gap-0 sm:max-w-[425px]">
+          <DialogHeader className="mb-4">
             <DialogTitle>{TitleComponent}</DialogTitle>
           </DialogHeader>
           {ContentComponent}
           <DialogDescription className="hidden">
             Penjelasan mengenai {TitleComponent}
           </DialogDescription>
+          {FooterComponent && <DialogFooter>{FooterComponent}</DialogFooter>}
         </DialogContent>
       </Dialog>
     );
@@ -61,10 +65,14 @@ export function ContextComponent({
         <DrawerHeader className="text-left">
           <DrawerTitle>{TitleComponent}</DrawerTitle>
         </DrawerHeader>
+        <DrawerDescription className="hidden">
+          Penjelasan mengenai {TitleComponent}
+        </DrawerDescription>
         <div className="px-4">{ContentComponent}</div>
         <DrawerFooter className="pt-2">
+          {FooterComponent}
           <DrawerClose asChild>
-            <Button>Ok</Button>
+            <Button variant={"secondary"}>Tutup</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

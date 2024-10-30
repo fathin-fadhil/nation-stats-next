@@ -61,3 +61,25 @@ export async function getAllNations() {
 
   return nations as { id: string; code: string; name: string; slug: string }[];
 }
+
+export async function getGovernmentFormData(slug: string) {
+  const [err, governmentForm] = await asyncCatchError(
+    db.query.governmentForms.findFirst({
+      where(fields, operators) {
+        return operators.eq(fields.slug, slug);
+      },
+      with: {
+        govermentFormsToNations: {
+          with: {
+            nation: true,
+          },
+        },
+      },
+    }),
+  );
+
+  if (!governmentForm) return null;
+  return governmentForm;
+
+  return governmentForm;
+}
