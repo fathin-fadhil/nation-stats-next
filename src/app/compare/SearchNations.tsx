@@ -11,7 +11,6 @@ export function SearchNations({
 }: {
   allNations: { id: string; code: string; name: string; slug: string }[];
 }) {
-  console.log("🚀 ~ allNations:", allNations);
   const params = useSearchParams();
   const router = useRouter();
   const [showNextNation, setShowNextNation] = useState(

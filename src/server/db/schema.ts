@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { desc, relations, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -168,6 +168,7 @@ export const governmentForms = createTable("government_form", {
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
+  description: text("description"),
 });
 
 export const governmentFormsRelations = relations(
@@ -250,6 +251,7 @@ export const headOfStates = createTable("head_of_state", {
     .$defaultFn(() => crypto.randomUUID()),
   name: varchar("name", { length: 255 }).notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
+  description: text("description"),
 });
 
 export const headOfStatesRelations = relations(headOfStates, ({ many }) => ({
@@ -264,6 +266,7 @@ export const headOfGovernments = createTable("head_of_government", {
     .$defaultFn(() => crypto.randomUUID()),
   name: varchar("name", { length: 255 }).notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
+  description: text("description"),
 });
 
 export const headOfGovernmentsRelations = relations(

@@ -104,7 +104,10 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                         TitleComponent={
                           "Bentuk Pemerintah " + governmentForm.name
                         }
-                        ContentComponent="Consectetur irure sint sunt eu quis ipsum anim aute ullamco deserunt officia. Incididunt cillum sint deserunt qui. Culpa ullamco do elit nulla ad. Ullamco id incididunt anim voluptate culpa veniam. Occaecat cupidatat ullamco eu labore cupidatat excepteur commodo. Minim ad magna mollit consectetur reprehenderit quis nisi non."
+                        ContentComponent={
+                          governmentForm.description ||
+                          "Deskripsi tidak tersedia"
+                        }
                       />
                     ))}
                   </span>
@@ -136,7 +139,10 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                           <ExternalLink className="size-4" />
                         </Badge>
                       }
-                      ContentComponent="Consectetur irure sint sunt eu quis ipsum anim aute ullamco deserunt officia. Incididunt cillum sint deserunt qui. Culpa ullamco do elit nulla ad. Ullamco id incididunt anim voluptate culpa veniam. Occaecat cupidatat ullamco eu labore cupidatat excepteur commodo. Minim ad magna mollit consectetur reprehenderit quis nisi non."
+                      ContentComponent={
+                        nation.headOfStates?.description ??
+                        "Data tidak tersedia"
+                      }
                       TitleComponent={
                         "Kepala Negara: " + nation.headOfStates?.name ||
                         "Data tidak tersedia"
@@ -172,7 +178,10 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                           <ExternalLink className="size-4" />
                         </Badge>
                       }
-                      ContentComponent="Consectetur irure sint sunt eu quis ipsum anim aute ullamco deserunt officia. Incididunt cillum sint deserunt qui. Culpa ullamco do elit nulla ad. Ullamco id incididunt anim voluptate culpa veniam. Occaecat cupidatat ullamco eu labore cupidatat excepteur commodo. Minim ad magna mollit consectetur reprehenderit quis nisi non."
+                      ContentComponent={
+                        nation.headOfGovernments?.description ||
+                        "Data tidak tersedia"
+                      }
                       TitleComponent={
                         "Kepala Pemerintah: " +
                           nation.headOfGovernments?.name ||
