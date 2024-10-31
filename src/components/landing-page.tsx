@@ -44,7 +44,10 @@ export function LandingPage() {
         </section>
         <section className="flex w-full justify-center bg-gray-100 py-12 dark:bg-gray-800 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-5xl">
+            <h2
+              id="features"
+              className="mb-12 scroll-m-16 text-center text-3xl font-bold tracking-tighter sm:text-5xl"
+            >
               Fitur Utama
             </h2>
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
