@@ -209,6 +209,15 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                           nation.headOfGovernments?.name ||
                         "Data tidak tersedia"
                       }
+                      FooterComponent={
+                        <Link
+                          href={`/head-of-government/${nation.headOfGovernments?.slug}`}
+                          className={buttonVariants()}
+                        >
+                          Lihat Selengkapnya
+                          <MoveRight className="ms- inline h-4 w-4" />
+                        </Link>
+                      }
                     />
                   </span>
                 </div>

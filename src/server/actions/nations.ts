@@ -97,3 +97,19 @@ export async function getHeadOfStateData(slug: string) {
   if (!headOfState) return null;
   return headOfState;
 }
+
+export async function getHeadOfGovernmentData(slug: string) {
+  const [err, headOfGovernment] = await asyncCatchError(
+    db.query.headOfGovernments.findFirst({
+      where(fields, operators) {
+        return operators.eq(fields.slug, slug);
+      },
+      with: {
+        headOfGovernmentsToNations: true,
+      },
+    }),
+  );
+
+  if (!headOfGovernment) return null;
+  return headOfGovernment;
+}
