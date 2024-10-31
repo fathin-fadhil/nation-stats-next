@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { BackButton } from "~/components/back-button";
 import { Skeleton } from "~/components/ui/skeleton";
 
-export default function HeadOfStateLoading() {
+export default function HeadOfGovernmentLoading() {
   return (
     <div id="#" className="flex min-h-screen flex-col bg-gray-100">
       <Header />

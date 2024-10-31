@@ -7,6 +7,7 @@ import { BackButton } from "~/components/back-button";
 import Link from "next/link";
 import { buttonVariants } from "~/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { ScrollToTop } from "~/components/scroll-to-top";
 
 export default async function HeadOfState({
   params,
@@ -20,6 +21,7 @@ export default async function HeadOfState({
   return (
     <div id="#" className="flex min-h-screen flex-col bg-gray-100">
       <Header />
+      <ScrollToTop />
       <div className="mt-14">
         <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-4">
           <Card>
