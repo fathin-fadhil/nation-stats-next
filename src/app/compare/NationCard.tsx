@@ -160,6 +160,15 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                         "Kepala Negara: " + nation.headOfStates?.name ||
                         "Data tidak tersedia"
                       }
+                      FooterComponent={
+                        <Link
+                          href={`/head-of-state/${nation.headOfStates?.slug}`}
+                          className={buttonVariants()}
+                        >
+                          Lihat Selengkapnya
+                          <MoveRight className="ms- inline h-4 w-4" />
+                        </Link>
+                      }
                     />
                   </span>
                 </div>

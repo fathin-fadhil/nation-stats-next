@@ -80,6 +80,20 @@ export async function getGovernmentFormData(slug: string) {
 
   if (!governmentForm) return null;
   return governmentForm;
+}
 
-  return governmentForm;
+export async function getHeadOfStateData(slug: string) {
+  const [err, headOfState] = await asyncCatchError(
+    db.query.headOfStates.findFirst({
+      where(fields, operators) {
+        return operators.eq(fields.slug, slug);
+      },
+      with: {
+        headOfStatesToNations: true,
+      },
+    }),
+  );
+
+  if (!headOfState) return null;
+  return headOfState;
 }
