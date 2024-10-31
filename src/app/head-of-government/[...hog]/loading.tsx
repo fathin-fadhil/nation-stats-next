@@ -5,7 +5,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 
 export default function HeadOfStateLoading() {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100">
+    <div id="#" className="flex min-h-screen flex-col bg-gray-100">
       <Header />
       <div className="mt-14">
         <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-4">

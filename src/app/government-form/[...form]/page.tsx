@@ -15,7 +15,7 @@ export default async function GovernmentFormPage({
   if (!governmentFormData) return notFound();
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100">
+    <div id="#" className="flex min-h-screen flex-col bg-gray-100">
       <Header />
       <div className="mt-14">
         <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-4">
@@ -24,7 +24,7 @@ export default async function GovernmentFormPage({
               <BackButton />
             </CardHeader>
             <CardContent>
-              <article className="prose-sm prose max-w-none">
+              <article className="prose prose-sm max-w-none">
                 {governmentFormData.longDescriptionMd ? (
                   <Markdown>{governmentFormData.longDescriptionMd}</Markdown>
                 ) : (
