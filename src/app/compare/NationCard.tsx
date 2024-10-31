@@ -3,6 +3,7 @@ import {
   Crown,
   ExternalLink,
   HandCoins,
+  MoveRight,
   PersonStanding,
   Scale,
   ScrollText,
@@ -117,6 +118,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                             className={buttonVariants()}
                           >
                             Lihat Selengkapnya
+                            <MoveRight className="ms- inline h-4 w-4" />
                           </Link>
                         }
                       />
