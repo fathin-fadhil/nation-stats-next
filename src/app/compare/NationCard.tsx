@@ -22,6 +22,7 @@ import IndexDescription from "./IndexDescription.json";
 import { buttonVariants } from "~/components/ui/button";
 import Link from "next/link";
 import { Skeleton } from "~/components/ui/skeleton";
+import { DescriptionAccordion } from "./DescriptionAccordion";
 
 const RadarChart = dynamic(() => import("./RadarChart"), {
   ssr: false,
@@ -61,10 +62,13 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             </td>
           </tr>
           <tr>
+            <td className="px-4 md:hidden" colSpan={nations.length}>
+              <DescriptionAccordion nationsData={nations} />
+            </td>
             {nations.map((nation, i) => (
               <td
                 key={nation.id + "desc"}
-                className={`w-[50%] ${nations.length > 1 && (i === 0 ? "pr-1" : "pl-1")}`}
+                className={`hidden w-[50%] md:table-cell ${nations.length > 1 && (i === 0 ? "pr-1" : "pl-1")}`}
               >
                 <ScrollArea
                   type="always"
