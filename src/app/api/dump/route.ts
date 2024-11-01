@@ -1,4 +1,5 @@
 import { eq, InferSelectModel } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { env } from "~/env";
 import { asyncCatchError } from "~/lib/utils";
@@ -276,6 +277,8 @@ export async function POST(request: Request) {
     );
 
   console.log("🚀 ~ nation ~ nation:", nation);
+
+  revalidatePath("/");
 
   return new Response(JSON.stringify({ message: "Success" }));
 }

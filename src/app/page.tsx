@@ -15,6 +15,8 @@ import {
   RandomFactCarouselLoadingUi,
 } from "./RandomFactCarousel";
 
+export const revalidate = 60 * 30;
+
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
