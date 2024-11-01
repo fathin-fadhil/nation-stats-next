@@ -3,6 +3,7 @@ import {
   Crown,
   ExternalLink,
   HandCoins,
+  Landmark,
   MoveRight,
   PersonStanding,
   Scale,
@@ -115,6 +116,54 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                         FooterComponent={
                           <Link
                             href={`/government-form/${governmentForm.slug}`}
+                            className={buttonVariants()}
+                          >
+                            Lihat Selengkapnya
+                            <MoveRight className="ms- inline h-4 w-4" />
+                          </Link>
+                        }
+                      />
+                    ))}
+                  </span>
+                </div>
+              </td>
+            ))}
+          </tr>
+          <tr>
+            {nations.map((nation) => (
+              <td key={nation.id + "polsys"} className="w-[50%] pt-6">
+                <div className="flex flex-col items-center gap-2">
+                  <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
+                    <Landmark className="h-5 w-5 text-gray-500" />
+                    Sistem Politik:
+                  </span>
+                  <span className="lg:textbase inline-flex flex-wrap justify-center gap-1 text-sm md:gap-2">
+                    {nation.politicalSystems.map(({ politicalSystem }) => (
+                      <ContextComponent
+                        key={politicalSystem.id}
+                        TriggerComponent={
+                          <Badge
+                            style={{
+                              backgroundColor: stringToColor(
+                                politicalSystem.name,
+                              ),
+                            }}
+                            className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                          >
+                            {politicalSystem.name}
+                            <ExternalLink className="size-4" />
+                          </Badge>
+                        }
+                        TitleComponent={
+                          "Bentuk Pemerintah " + politicalSystem.name
+                        }
+                        ContentComponent={
+                          politicalSystem.description ||
+                          "Deskripsi tidak tersedia"
+                        }
+                        FooterComponent={
+                          <Link
+                            href={`/political-system/${politicalSystem.slug}`}
                             className={buttonVariants()}
                           >
                             Lihat Selengkapnya
