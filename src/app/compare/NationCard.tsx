@@ -19,7 +19,7 @@ import { Nation } from "~/server/actions/nations";
 import dynamic from "next/dynamic";
 import { ContextComponent } from "./ContextComponent";
 import IndexDescription from "./IndexDescription.json";
-import { Button, buttonVariants } from "~/components/ui/button";
+import { buttonVariants } from "~/components/ui/button";
 import Link from "next/link";
 
 const RadarChart = dynamic(() => import("./RadarChart"), {
@@ -56,8 +56,11 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             </td>
           </tr>
           <tr>
-            {nations.map((nation) => (
-              <td key={nation.id + "desc"} className="w-[50%]">
+            {nations.map((nation, i) => (
+              <td
+                key={nation.id + "desc"}
+                className={`w-[50%] ${nations.length > 1 && (i === 0 ? "pr-1" : "pl-1")}`}
+              >
                 <ScrollArea
                   type="always"
                   className="h-80 w-full rounded-md border p-2 md:h-56 md:p-4"
@@ -281,8 +284,11 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
             </td>
           </tr>
           <tr>
-            {nations.map((nation) => (
-              <td key={nation.id + "parties"} className="w-[50%] align-top">
+            {nations.map((nation, i) => (
+              <td
+                key={nation.id + "parties"}
+                className={`w-[50%] align-top ${nations.length > 1 && (i === 0 ? "pr-1" : "pl-1")}`}
+              >
                 <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] p-1 md:p-2">
                   {nation.parties.map((party, i) => (
                     <div
