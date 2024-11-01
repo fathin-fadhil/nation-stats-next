@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Amerika Serikat",
+    "code": "us",
+    "fact": "Amerika Serikat adalah negara pertama yang menempatkan manusia di bulan pada tahun 1969 melalui misi Apollo 11 NASA."
+  },
+  {
+    "name": "Kanada",
+    "code": "ca",
+    "fact": "Kanada memiliki garis pantai terpanjang di dunia, membentang sepanjang 202.080 kilometer."
+  },
+  {
+    "name": "Jepang",
+    "code": "jp",
+    "fact": "Jepang adalah negara dengan harapan hidup tertinggi di dunia, dan rumah bagi lebih dari 80.000 orang yang berusia di atas 100 tahun."
+  },
+  {
+    "name": "Australia",
+    "code": "au",
+    "fact": "Australia memiliki lebih banyak domba daripada manusia, dengan perkiraan sekitar 3 domba untuk setiap penduduk Australia."
+  },
+  {
+    "name": "Brasil",
+    "code": "br",
+    "fact": "Brasil memiliki hutan hujan terbesar di dunia, Amazon, yang meliputi sekitar 60% wilayah negara tersebut."
+  },
+  {
+    "name": "Prancis",
+    "code": "fr",
+    "fact": "Prancis adalah tujuan wisata paling populer di dunia, dengan lebih dari 89 juta turis mengunjungi setiap tahunnya sebelum pandemi."
+  },
+  {
+    "name": "Rusia",
+    "code": "ru",
+    "fact": "Rusia adalah negara terluas di dunia dengan luas lebih dari 17 juta kilometer persegi, mencakup lebih dari satu-delapan luas daratan bumi."
+  },
+  {
+    "name": "India",
+    "code": "in",
+    "fact": "India adalah negara dengan populasi vegetarian terbanyak di dunia, dengan lebih dari 30% penduduknya tidak mengonsumsi daging."
+  },
+  {
+    "name": "Swiss",
+    "code": "ch",
+    "fact": "Swiss terkenal sebagai negara netral yang tidak terlibat dalam perang sejak 1815, meskipun terletak di jantung Eropa."
+  },
+  {
+    "name": "Mesir",
+    "code": "eg",
+    "fact": "Mesir adalah rumah bagi salah satu keajaiban dunia kuno, Piramida Giza, yang merupakan struktur tertua yang masih berdiri."
+  },
+  {
+    "name": "Islandia",
+    "code": "is",
+    "fact": "Islandia adalah satu-satunya negara di dunia yang tidak memiliki nyamuk, berkat iklimnya yang keras bagi serangga tersebut."
+  },
+  {
+    "name": "Tiongkok",
+    "code": "cn",
+    "fact": "Tiongkok memiliki Tembok Besar Tiongkok, struktur terpanjang di dunia yang dibangun selama beberapa abad untuk melindungi negara dari invasi."
+  },
+  {
+    "name": "Arab Saudi",
+    "code": "sa",
+    "fact": "Arab Saudi adalah tempat kelahiran Islam dan rumah bagi kota suci Mekkah, yang dikunjungi oleh jutaan Muslim setiap tahun dalam ibadah Haji."
+  },
+  {
+    "name": "Italia",
+    "code": "it",
+    "fact": "Italia memiliki jumlah Situs Warisan Dunia UNESCO terbanyak di dunia, termasuk Colosseum, Menara Miring Pisa, dan kota Pompeii yang terkenal."
+  },
+  {
+    "name": "Indonesia",
+    "code": "id",
+    "fact": "Indonesia adalah negara kepulauan terbesar di dunia dengan lebih dari 17.000 pulau, termasuk Bali yang menjadi destinasi wisata internasional."
+  }
+]

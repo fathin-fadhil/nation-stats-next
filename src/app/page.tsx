@@ -10,6 +10,7 @@ import { db } from "~/server/db";
 import { sql } from "drizzle-orm";
 import Link from "next/link";
 import { Skeleton } from "~/components/ui/skeleton";
+import { RandomFactCarousel } from "./RandomFactCarousel";
 
 export default function HomePage() {
   return (
@@ -109,14 +110,8 @@ export default function HomePage() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                   Fakta Unik Negara-Negara di Seluruh Dunia
                 </h2>
-                <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl">
-                  Start comparing countries and discovering fascinating insights
-                  about global political systems today.
-                </p>
               </div>
-              <div className="space-x-4">
-                <Button size="lg">Get Started Now</Button>
-              </div>
+              <RandomFactCarousel />
             </div>
           </div>
         </section>
