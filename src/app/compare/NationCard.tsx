@@ -97,7 +97,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id + "govform"} className="w-[50%]">
+              <td key={nation.id + "govform"} className="w-[50%] align-top">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Building2 className="h-5 w-5 text-gray-500" />
@@ -145,7 +145,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id + "polsys"} className="w-[50%] pt-6">
+              <td key={nation.id + "polsys"} className="w-[50%] pt-6 align-top">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Landmark className="h-5 w-5 text-gray-500" />
@@ -193,7 +193,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id + "hos"} className="w-[50%] pt-6">
+              <td key={nation.id + "hos"} className="w-[50%] pt-6 align-top">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <Crown className="h-5 w-5 text-gray-500" />
@@ -240,7 +240,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
           </tr>
           <tr>
             {nations.map((nation) => (
-              <td key={nation.id + "hog"} className="w-[50%] pt-6">
+              <td key={nation.id + "hog"} className="w-[50%] pt-6 align-top">
                 <div className="flex flex-col items-center gap-2">
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
                     <UserRound className="h-5 w-5 text-gray-500" />
