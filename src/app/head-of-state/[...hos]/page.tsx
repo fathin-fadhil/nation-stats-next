@@ -21,7 +21,6 @@ export default async function HeadOfState({
   return (
     <div id="#" className="flex min-h-screen flex-col bg-gray-100">
       <Header />
-      <ScrollToTop />
       <div className="mt-14">
         <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-4">
           <Card>
