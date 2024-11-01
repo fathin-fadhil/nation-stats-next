@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "~/components/ui/carousel";
+import { Skeleton } from "~/components/ui/skeleton";
 import { getRandomFact } from "~/server/actions/randomFacts";
 
 export async function RandomFactCarousel() {
@@ -38,6 +39,29 @@ export async function RandomFactCarousel() {
             </div>
           </CarouselItem>
         ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
+
+export function RandomFactCarouselLoadingUi() {
+  return (
+    <Carousel opts={{ loop: true }} className="w-[70%] max-w-lg">
+      <CarouselContent>
+        <CarouselItem className="h-[250px]">
+          <div className="h-[250px] p-1">
+            <Card className="h-full">
+              <CardContent className="flex h-full flex-col justify-center p-2 text-center md:p-4">
+                <h4 className="inline-flex items-center justify-center">
+                  <Skeleton className="h-5 w-[50%]" />
+                </h4>
+                <Skeleton className="mx-auto mt-2 h-4 w-[80%]" />
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

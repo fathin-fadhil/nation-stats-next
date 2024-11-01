@@ -10,7 +10,10 @@ import { db } from "~/server/db";
 import { sql } from "drizzle-orm";
 import Link from "next/link";
 import { Skeleton } from "~/components/ui/skeleton";
-import { RandomFactCarousel } from "./RandomFactCarousel";
+import {
+  RandomFactCarousel,
+  RandomFactCarouselLoadingUi,
+} from "./RandomFactCarousel";
 
 export default function HomePage() {
   return (
@@ -111,7 +114,9 @@ export default function HomePage() {
                   Fakta Unik Negara-Negara di Seluruh Dunia
                 </h2>
               </div>
-              <RandomFactCarousel />
+              <React.Suspense fallback={<RandomFactCarouselLoadingUi />}>
+                <RandomFactCarousel />
+              </React.Suspense>
             </div>
           </div>
         </section>
