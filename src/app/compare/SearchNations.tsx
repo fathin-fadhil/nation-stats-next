@@ -3,7 +3,10 @@
 import { Loader, Plus, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
-import { NationsDropdown } from "~/components/nations-dropdown";
+import {
+  NationsDropdown,
+  NationSearchLoadingUI,
+} from "~/components/nations-dropdown";
 import { Button } from "~/components/ui/button";
 
 export function SearchNations({
@@ -94,6 +97,36 @@ export function SearchNations({
         onClick={handleSearch}
       >
         {isPending ? <Loader className="h-4 w-4 animate-spin" /> : " Cari!"}
+      </Button>
+    </div>
+  );
+}
+
+export function SearchNationsLoadingUI({
+  nationCodes,
+}: {
+  nationCodes: string[];
+}) {
+  const showNextNation = nationCodes.length > 1;
+  return (
+    <div className="flex flex-col items-center justify-center gap-2 py-2 align-middle md:flex-row">
+      <div className="">
+        <NationSearchLoadingUI />
+      </div>
+      {showNextNation ? (
+        <div className="relative mt-1 md:me-1 md:mt-0">
+          <button className="absolute right-0 top-0 aspect-square h-5 w-5 -translate-y-[50%] translate-x-[50%] rounded-full bg-red-600 p-1">
+            <X className="h-full w-full text-white" />
+          </button>
+          <NationSearchLoadingUI />
+        </div>
+      ) : (
+        <Button variant="outline" className="w-64 cursor-wait md:w-fit">
+          <Plus className="h-4 w-4" />
+        </Button>
+      )}
+      <Button className="w-64 md:w-20" disabled={true}>
+        <Loader className="h-4 w-4 animate-spin" />
       </Button>
     </div>
   );
