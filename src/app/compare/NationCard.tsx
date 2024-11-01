@@ -40,15 +40,17 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
         <thead>
           <tr>
             {nations.map((nation) => (
-              <th key={nation.id + "head"} className="w-[50%]">
-                <CardTitle className="text-xl font-bold lg:text-2xl">
+              <th key={nation.id + "head"} className="w-[50%] align-top">
+                <div className="flex h-full flex-col items-center justify-center gap-2 md:flex-row">
                   <img
                     src={` https://flagcdn.com/h120/${nation.code}.png `}
                     width={40}
-                    className="me-2 inline h-fit"
+                    className="h-fit"
                   ></img>
-                  {nation.name}
-                </CardTitle>
+                  <CardTitle className="inline text-xl font-bold lg:text-2xl">
+                    {nation.name}
+                  </CardTitle>
+                </div>
               </th>
             ))}
           </tr>
