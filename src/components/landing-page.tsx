@@ -1,11 +1,15 @@
 import * as React from "react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Search, BarChart2, GitCompare } from "lucide-react";
+import { Search, BarChart2, GitCompare, ExternalLink } from "lucide-react";
 import { Header } from "./header";
 import { getAllNations } from "~/server/actions/nations";
 import { ClientNationsDropdown } from "./client-nations-dropdown";
 import { NationSearchLoadingUI } from "./nations-dropdown";
+import { db } from "~/server/db";
+import { sql } from "drizzle-orm";
+import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 export function LandingPage() {
   return (
@@ -90,42 +94,12 @@ export function LandingPage() {
         <section className="flex w-full justify-center bg-white py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-5xl">
-              Mulai Bandingkan Negara
+              Mulai Eksplore Negara
             </h2>
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-              <Card>
-                <CardHeader>
-                  <CardTitle>United States</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-inside list-disc space-y-2">
-                    <li>
-                      Government Form: Federal Presidential Constitutional
-                      Republic
-                    </li>
-                    <li>Political System: Two-party system</li>
-                    <li>Electoral System: Electoral College</li>
-                    <li>Number of Political Parties: 2 major parties</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>United Kingdom</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-inside list-disc space-y-2">
-                    <li>
-                      Government Form: Unitary Parliamentary Constitutional
-                      Monarchy
-                    </li>
-                    <li>Political System: Multi-party system</li>
-                    <li>Electoral System: First-past-the-post voting</li>
-                    <li>Number of Political Parties: 3+ major parties</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+
+            <React.Suspense fallback={<RandomNationCardLoadingUI />}>
+              <RandomNationCard />
+            </React.Suspense>
           </div>
         </section>
         <section className="flex w-full justify-center bg-gray-100 py-12 dark:bg-gray-800 md:py-24 lg:py-32">
@@ -167,4 +141,132 @@ export function LandingPage() {
 async function NationSearch() {
   const allNations = await getAllNations();
   return <ClientNationsDropdown allNations={allNations} />;
+}
+
+async function RandomNationCardLoadingUI() {
+  return (
+    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+      {[1, 2, 3, 4].map(() => (
+        <Card className="border-2 transition-colors hover:border-gray-800">
+          <CardHeader>
+            <CardTitle className="inline-flex items-center gap-2">
+              <Skeleton className="h-6 w-[60%]" />
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="list-inside list-disc space-y-2">
+              <li className="">
+                <span className="inline-flex w-[80%]">
+                  Bentuk Pemerintahan:
+                  <Skeleton className="my-auto inline-block h-4 min-h-1 grow" />
+                </span>
+              </li>
+              <li className="">
+                <span className="inline-flex w-[80%]">
+                  Sistem Politik: <Skeleton className="h-4 min-w-1 flex-grow" />
+                </span>
+              </li>
+              <li className="">
+                <span className="inline-flex w-[80%]">
+                  Kepala Pemerintahan:
+                  <Skeleton className="h-4 min-w-1 flex-grow" />
+                </span>
+              </li>
+              <li className="">
+                <span className="inline-flex w-[80%]">
+                  Partai Politik: <Skeleton className="h-4 min-w-1 flex-grow" />
+                </span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
+async function RandomNationCard() {
+  const nations = await db.query.nations.findMany({
+    limit: 4,
+    orderBy: () => sql`RANDOM()`,
+    with: {
+      parties: {
+        columns: {
+          id: true,
+        },
+      },
+      headOfGovernments: {
+        columns: {
+          name: true,
+        },
+      },
+      politicalSystems: {
+        with: {
+          politicalSystem: {
+            columns: {
+              name: true,
+            },
+          },
+        },
+      },
+      governmentForms: {
+        with: {
+          governmentForm: {
+            columns: {
+              name: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return (
+    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+      {nations.map((nation) => (
+        <Link href={`/compare?nations=${nation.code}`}>
+          <Card className="border-2 transition-colors hover:border-gray-800">
+            <CardHeader>
+              <CardTitle className="inline-flex items-center gap-2">
+                <img
+                  src={` https://flagcdn.com/w20/${nation.code}.png `}
+                  width={20}
+                  className="inline h-fit"
+                ></img>
+                {nation.name} <ExternalLink className="inline h-5 w-5" />
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-inside list-disc space-y-2">
+                <li>
+                  Bentuk Pemerintahan:{" "}
+                  {nation.governmentForms.map(({ governmentForm }, i) => (
+                    <span>
+                      {governmentForm.name}
+                      {i < nation.governmentForms.length - 1 ? ", " : ""}
+                    </span>
+                  ))}{" "}
+                </li>
+                <li>
+                  Sistem Politik:{" "}
+                  {nation.politicalSystems.map(({ politicalSystem }, i) => (
+                    <span>
+                      {politicalSystem.name}
+                      {i < nation.politicalSystems.length - 1 ? ", " : ""}
+                    </span>
+                  ))}{" "}
+                </li>
+                <li>Kepala Pemerintahan: {nation.headOfGovernments?.name}</li>
+                <li>
+                  Partai Politik:{" "}
+                  {nation.parties?.length
+                    ? `${nation.parties?.length} Partai Populer`
+                    : "Tidak ada data"}{" "}
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  );
 }
