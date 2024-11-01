@@ -45,7 +45,7 @@ export default function HomePage() {
                   <NationSearch />
                 </React.Suspense>
                 <p className="text-xs text-muted-foreground">
-                  Select a country to view its detailed information
+                  Pilih negara untuk melihat informasi detailnya
                 </p>
               </div>
             </div>
