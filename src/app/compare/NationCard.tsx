@@ -21,10 +21,15 @@ import { ContextComponent } from "./ContextComponent";
 import IndexDescription from "./IndexDescription.json";
 import { buttonVariants } from "~/components/ui/button";
 import Link from "next/link";
+import { Skeleton } from "~/components/ui/skeleton";
 
 const RadarChart = dynamic(() => import("./RadarChart"), {
   ssr: false,
-  loading: () => <div className="h-96 w-full">Loading Chart</div>,
+  loading: () => (
+    <div className="mx-auto aspect-[10/10] w-full sm:aspect-[10/6] md:aspect-[10/5]">
+      <Skeleton className="mx-auto aspect-square h-full" />
+    </div>
+  ),
 });
 
 export function NationsGrid({ nations }: { nations: Nation[] }) {
