@@ -229,8 +229,12 @@ async function RandomNationCard() {
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
       {nations.map((nation) => (
-        <Link key={nation.id + "rand"} href={`/compare?nations=${nation.code}`}>
-          <Card className="border-2 transition-colors hover:border-gray-800">
+        <Link
+          key={nation.id + "rand"}
+          className="h-full"
+          href={`/compare?nations=${nation.code}`}
+        >
+          <Card className="h-full border-2 transition-colors hover:border-gray-800">
             <CardHeader>
               <CardTitle className="inline-flex items-center gap-2">
                 <img
