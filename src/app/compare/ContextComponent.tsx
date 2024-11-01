@@ -44,7 +44,10 @@ export function ContextComponent({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{TriggerComponent}</DialogTrigger>
-        <DialogContent aria-describedby="" className="gap-0 sm:max-w-[425px]">
+        <DialogContent
+          aria-describedby=""
+          className="gap-0 text-justify sm:max-w-[425px]"
+        >
           <DialogDescription className="hidden">
             Penjelasan mengenai {TitleComponent}
           </DialogDescription>
@@ -70,7 +73,7 @@ export function ContextComponent({
         <DrawerDescription className="hidden">
           Penjelasan mengenai {TitleComponent}
         </DrawerDescription>
-        <div className="px-4">{ContentComponent}</div>
+        <div className="px-4 text-justify">{ContentComponent}</div>
         <DrawerFooter className="pt-2">
           {FooterComponent}
           <DrawerClose asChild>

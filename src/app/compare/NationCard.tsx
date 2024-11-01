@@ -72,7 +72,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
               >
                 <ScrollArea
                   type="always"
-                  className="h-80 w-full rounded-md border p-2 md:h-56 md:p-4"
+                  className="h-80 w-full rounded-md border p-2 text-justify md:h-56 md:p-4"
                 >
                   {nation.description?.split("\n").map((desc, i) => (
                     <p
