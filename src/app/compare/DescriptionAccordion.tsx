@@ -13,7 +13,12 @@ export function DescriptionAccordion({
   nationsData: Nation[];
 }) {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion
+      defaultValue={nationsData[0]?.name}
+      type="single"
+      collapsible
+      className="w-full"
+    >
       {nationsData.map((nation, index) => (
         <AccordionItem key={nation.name + "descaccr"} value={nation.name}>
           <AccordionTrigger>{nation.name}</AccordionTrigger>
