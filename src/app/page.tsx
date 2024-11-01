@@ -106,7 +106,10 @@ export default function HomePage() {
             </React.Suspense>
           </div>
         </section>
-        <section className="flex w-full justify-center bg-gray-100 py-12 dark:bg-gray-800 md:py-24">
+        <section
+          id="fun-fact"
+          className="flex w-full justify-center bg-gray-100 py-12 dark:bg-gray-800 md:py-24"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">

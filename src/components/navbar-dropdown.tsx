@@ -3,8 +3,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Link from "next/link";
@@ -19,6 +17,14 @@ export function NavbarDropdown() {
         <DropdownMenuItem className="p-0">
           <Link
             className="w-full p-2 text-sm font-medium underline-offset-4 hover:underline"
+            href="/"
+          >
+            Home
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="p-0">
+          <Link
+            className="w-full p-2 text-sm font-medium underline-offset-4 hover:underline"
             href="/#features"
           >
             Features
@@ -27,17 +33,9 @@ export function NavbarDropdown() {
         <DropdownMenuItem className="p-0">
           <Link
             className="w-full p-2 text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
+            href="/#fun-fact"
           >
-            About
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="p-0">
-          <Link
-            className="w-full p-2 text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
-          >
-            Contact
+            Fun Fact
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>

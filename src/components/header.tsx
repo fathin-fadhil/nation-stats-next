@@ -15,21 +15,21 @@ export function Header() {
       <nav className="ml-auto hidden gap-4 sm:flex sm:gap-6">
         <Link
           className="text-sm font-medium underline-offset-4 hover:underline"
+          href="/"
+        >
+          Home
+        </Link>
+        <Link
+          className="text-sm font-medium underline-offset-4 hover:underline"
           href="/#features"
         >
           Features
         </Link>
         <Link
           className="text-sm font-medium underline-offset-4 hover:underline"
-          href="#"
+          href="/#fun-fact"
         >
-          About
-        </Link>
-        <Link
-          className="text-sm font-medium underline-offset-4 hover:underline"
-          href="#"
-        >
-          Contact
+          Fun Fact
         </Link>
       </nav>
     </header>
