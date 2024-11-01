@@ -113,3 +113,23 @@ export async function getHeadOfGovernmentData(slug: string) {
   if (!headOfGovernment) return null;
   return headOfGovernment;
 }
+
+export async function getPoliticalSystemData(slug: string) {
+  const [err, politicalSystem] = await asyncCatchError(
+    db.query.politicalSystems.findFirst({
+      where(fields, operators) {
+        return operators.eq(fields.slug, slug);
+      },
+      with: {
+        politicalSystemsToNations: {
+          with: {
+            nation: true,
+          },
+        },
+      },
+    }),
+  );
+
+  if (!politicalSystem) return null;
+  return politicalSystem;
+}
