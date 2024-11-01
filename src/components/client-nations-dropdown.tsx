@@ -20,7 +20,7 @@ export function ClientNationsDropdown({
 
   return (
     <NationsDropdown
-      disabled={disabled}
+      loading={disabled}
       onSet={handleSet}
       size="big"
       allNations={allNations}

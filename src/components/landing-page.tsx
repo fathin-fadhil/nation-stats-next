@@ -5,6 +5,7 @@ import { Search, BarChart2, GitCompare } from "lucide-react";
 import { Header } from "./header";
 import { getAllNations } from "~/server/actions/nations";
 import { ClientNationsDropdown } from "./client-nations-dropdown";
+import { NationSearchLoadingUI } from "./nations-dropdown";
 
 export function LandingPage() {
   return (
@@ -32,7 +33,7 @@ export function LandingPage() {
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
-                <React.Suspense fallback={<div>Loading...</div>}>
+                <React.Suspense fallback={<NationSearchLoadingUI size="big" />}>
                   <NationSearch />
                 </React.Suspense>
                 <p className="text-xs text-muted-foreground">

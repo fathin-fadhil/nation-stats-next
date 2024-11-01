@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, Loader } from "lucide-react";
 
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
@@ -31,14 +31,14 @@ export function NationsDropdown({
   onSet,
   initialValue = "",
   size = "normal",
-  disabled = false,
+  loading = false,
   customSizeClass,
 }: {
   allNations: Nation[];
   onSet?: (code: string) => void;
   initialValue?: string;
   size?: "normal" | "big";
-  disabled?: boolean;
+  loading?: boolean;
   customSizeClass?: string;
 }) {
   const init =
@@ -52,7 +52,10 @@ export function NationsDropdown({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild disabled={disabled}>
+      <PopoverTrigger
+        asChild
+        className={`${loading && "pointer-events-none cursor-wait text-gray-400"}`}
+      >
         <Button
           variant="outline"
           role="combobox"
@@ -62,7 +65,11 @@ export function NationsDropdown({
           {value
             ? allNations.find((nations) => nations.code === value.code)?.name
             : "Pilih Negara"}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          {loading ? (
+            <Loader className="ml-2 h-4 w-4 shrink-0 animate-spin" />
+          ) : (
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -102,6 +109,36 @@ export function NationsDropdown({
           </CommandList>
         </Command>
       </PopoverContent>
+    </Popover>
+  );
+}
+
+export function NationSearchLoadingUI({
+  size = "normal",
+  customSizeClass,
+}: {
+  size?: "normal" | "big";
+  customSizeClass?: string;
+}) {
+  return (
+    <Popover>
+      <PopoverTrigger
+        asChild
+        className={"pointer-events-none cursor-wait text-gray-400"}
+      >
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={false}
+          className={`${customSizeClass ? customSizeClass : sizeSet[size]} justify-between`}
+        >
+          Loading...
+          <Loader className="ml-2 h-4 w-4 shrink-0 animate-spin" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent
+        className={`${customSizeClass ? customSizeClass : sizeSet[size]} p-0`}
+      ></PopoverContent>
     </Popover>
   );
 }
