@@ -458,7 +458,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
 
               return (
                 <td
-                  key={nation.id + "rolidx"}
+                  key={nation.id + "corruptidx"}
                   className="w-[50%] px-2 pt-6 align-top text-sm md:text-base"
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">
@@ -523,7 +523,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
 
               return (
                 <td
-                  key={nation.id + "rolidx"}
+                  key={nation.id + "hdidx"}
                   className="w-[50%] px-2 pt-6 align-top text-sm md:text-base"
                 >
                   <span className="flex flex-col items-center justify-center gap-1 text-sm font-medium md:flex-row lg:text-base">

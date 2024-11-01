@@ -15,7 +15,7 @@ export function DescriptionAccordion({
   return (
     <Accordion type="single" collapsible className="w-full">
       {nationsData.map((nation, index) => (
-        <AccordionItem value={nation.name}>
+        <AccordionItem key={nation.name + "descaccr"} value={nation.name}>
           <AccordionTrigger>{nation.name}</AccordionTrigger>
           <AccordionContent className="text-justify">
             {nation.description
