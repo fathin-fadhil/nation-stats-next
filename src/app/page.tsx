@@ -107,7 +107,7 @@ export default function HomePage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Ready to Explore the World&apos;s Nations?
+                  Fakta Unik Negara-Negara di Seluruh Dunia
                 </h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl">
                   Start comparing countries and discovering fascinating insights
@@ -146,8 +146,11 @@ async function NationSearch() {
 async function RandomNationCardLoadingUI() {
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-      {[1, 2, 3, 4].map(() => (
-        <Card className="border-2 transition-colors hover:border-gray-800">
+      {[1, 2, 3, 4].map((i) => (
+        <Card
+          key={i}
+          className="border-2 transition-colors hover:border-gray-800"
+        >
           <CardHeader>
             <CardTitle className="inline-flex items-center gap-2">
               <Skeleton className="h-6 w-[60%]" />
@@ -223,7 +226,7 @@ async function RandomNationCard() {
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
       {nations.map((nation) => (
-        <Link href={`/compare?nations=${nation.code}`}>
+        <Link key={nation.id + "rand"} href={`/compare?nations=${nation.code}`}>
           <Card className="border-2 transition-colors hover:border-gray-800">
             <CardHeader>
               <CardTitle className="inline-flex items-center gap-2">
@@ -240,7 +243,7 @@ async function RandomNationCard() {
                 <li>
                   Bentuk Pemerintahan:{" "}
                   {nation.governmentForms.map(({ governmentForm }, i) => (
-                    <span>
+                    <span key={governmentForm.name}>
                       {governmentForm.name}
                       {i < nation.governmentForms.length - 1 ? ", " : ""}
                     </span>
@@ -249,7 +252,7 @@ async function RandomNationCard() {
                 <li>
                   Sistem Politik:{" "}
                   {nation.politicalSystems.map(({ politicalSystem }, i) => (
-                    <span>
+                    <span key={politicalSystem.name}>
                       {politicalSystem.name}
                       {i < nation.politicalSystems.length - 1 ? ", " : ""}
                     </span>
