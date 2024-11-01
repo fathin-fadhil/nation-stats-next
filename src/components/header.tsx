@@ -7,7 +7,7 @@ export function Header() {
     <header className="fixed left-0 right-0 top-0 z-10 flex h-14 items-center border-b-[1px] bg-white/50 px-4 backdrop-blur-lg lg:px-6">
       <Link className="flex items-center justify-center" href="/">
         <Globe2 className="h-6 w-6" />
-        <span className="ml-2 text-2xl font-bold">NationStats</span>
+        <span className="ml-2 text-2xl font-bold">NationsStat</span>
       </Link>
       <nav className="flex w-full items-end justify-end sm:hidden">
         <NavbarDropdown />
