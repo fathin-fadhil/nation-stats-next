@@ -73,6 +73,7 @@ export function NationsDropdown({
         </Button>
       </PopoverTrigger>
       <PopoverContent
+        avoidCollisions={false}
         className={`${customSizeClass ? customSizeClass : sizeSet[size]} p-0`}
       >
         <Command>
