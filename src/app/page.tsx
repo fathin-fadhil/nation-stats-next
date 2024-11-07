@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Search, BarChart2, GitCompare, ExternalLink } from "lucide-react";
 import { Header } from "~/components/header";
@@ -15,7 +14,7 @@ import {
   RandomFactCarouselLoadingUi,
 } from "./RandomFactCarousel";
 
-export const revalidate = 60 * 30;
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   return (
