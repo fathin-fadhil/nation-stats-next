@@ -73,5 +73,50 @@
     "name": "Indonesia",
     "code": "id",
     "fact": "Indonesia adalah negara kepulauan terbesar di dunia dengan lebih dari 17.000 pulau, termasuk Bali yang menjadi destinasi wisata internasional."
+  },
+  {
+    "name": "Malaysia",
+    "code": "my",
+    "fact": "Malaysia adalah rumah bagi Menara Kembar Petronas di Kuala Lumpur, yang pernah menjadi gedung tertinggi di dunia hingga tahun 2004."
+  },
+  {
+    "name": "Singapura",
+    "code": "sg",
+    "fact": "Singapura dikenal sebagai negara yang paling hijau di Asia meskipun ukurannya kecil, dengan lebih dari 50% wilayahnya tertutup pepohonan dan taman."
+  },
+  {
+    "name": "Thailand",
+    "code": "th",
+    "fact": "Thailand adalah satu-satunya negara di Asia Tenggara yang tidak pernah dijajah oleh negara asing."
+  },
+  {
+    "name": "Filipina",
+    "code": "ph",
+    "fact": "Filipina terdiri dari lebih dari 7.600 pulau dan memiliki garis pantai terpanjang kedua di Asia, setelah Indonesia."
+  },
+  {
+    "name": "Vietnam",
+    "code": "vn",
+    "fact": "Vietnam adalah negara penghasil kopi terbesar kedua di dunia setelah Brasil, terutama kopi Robusta yang terkenal dengan cita rasa kuatnya."
+  },
+  {
+    "name": "Brunei",
+    "code": "bn",
+    "fact": "Brunei adalah salah satu negara terkaya di dunia berdasarkan PDB per kapita, berkat cadangan minyak dan gas bumi yang melimpah."
+  },
+  {
+    "name": "Laos",
+    "code": "la",
+    "fact": "Laos adalah satu-satunya negara di Asia Tenggara yang tidak memiliki garis pantai, dan lebih dari 70% wilayahnya tertutup pegunungan."
+  },
+  {
+    "name": "Myanmar",
+    "code": "mm",
+    "fact": "Myanmar memiliki lebih dari 2.000 pagoda dan candi kuno di Bagan, yang merupakan salah satu situs arkeologi terbesar di Asia."
+  },
+  {
+    "name": "Kamboja",
+    "code": "kh",
+    "fact": "Kamboja adalah tempat berdirinya Angkor Wat, kompleks candi terbesar di dunia yang dibangun pada abad ke-12 dan menjadi simbol nasional Kamboja."
   }
 ]
