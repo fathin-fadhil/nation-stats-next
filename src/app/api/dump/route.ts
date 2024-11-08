@@ -296,9 +296,9 @@ const dumpSchema = z.object({
   head_of_state: z.string(),
   head_of_government: z.string(),
   political_system: z.array(z.string()),
-  democracy_index: z.string(),
-  rule_of_law_index: z.string(),
-  corruption_index: z.string(),
-  hdi: z.string(),
+  democracy_index: z.string().nullable(),
+  rule_of_law_index: z.string().nullable(),
+  corruption_index: z.string().nullable(),
+  hdi: z.string().nullable(),
   description: z.string(),
 });
