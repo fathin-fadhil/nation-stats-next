@@ -3,7 +3,7 @@ import { getAllNations, getNationData } from "~/server/actions/nations";
 import { Header } from "~/components/header";
 import { SearchNations } from "./SearchNations";
 import { NationsGrid } from "./NationCard";
-import { ExternalLink } from "lucide-react";
+import { Info } from "lucide-react";
 
 export default async function ComparePage({
   searchParams,
@@ -34,8 +34,8 @@ export default async function ComparePage({
           <SearchNations allNations={allNations} />
           <p className="inline-flex items-center py-2 pl-1 text-xs">
             Klik simbol
-            <ExternalLink className="mx-1 inline h-3 w-3 shrink-0" /> untuk
-            melihat detail
+            <Info className="mx-1 inline h-3 w-3 shrink-0" /> untuk melihat
+            detail
           </p>
           <NationsGrid nations={nationsData.map((nat) => nat.nation!)} />
         </main>

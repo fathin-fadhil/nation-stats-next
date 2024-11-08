@@ -3,6 +3,7 @@ import {
   Crown,
   ExternalLink,
   HandCoins,
+  Info,
   Landmark,
   MoveRight,
   PersonStanding,
@@ -114,10 +115,12 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                                 governmentForm.name,
                               ),
                             }}
-                            className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                            className="inline text-center text-xs hover:cursor-pointer hover:underline md:text-sm"
                           >
-                            {governmentForm.name}
-                            <ExternalLink className="size-4" />
+                            <span className="mr-[2px] align-middle">
+                              {governmentForm.name}
+                            </span>
+                            <Info className="inline size-4" />
                           </Badge>
                         }
                         TitleComponent={
@@ -162,10 +165,12 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                                 politicalSystem.name,
                               ),
                             }}
-                            className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                            className="inline text-center text-xs hover:cursor-pointer hover:underline md:text-sm"
                           >
-                            {politicalSystem.name}
-                            <ExternalLink className="size-4" />
+                            <span className="mr-[2px] align-middle">
+                              {politicalSystem.name}
+                            </span>
+                            <Info className="inline size-4" />
                           </Badge>
                         }
                         TitleComponent={
@@ -209,10 +214,12 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                               nation.headOfStates?.name || "",
                             ),
                           }}
-                          className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                          className="inline text-center text-xs hover:cursor-pointer hover:underline md:text-sm"
                         >
-                          {nation.headOfStates?.name || "Data tidak tersedia"}
-                          <ExternalLink className="size-4" />
+                          <span className="mr-[2px] align-middle">
+                            {nation.headOfStates?.name || "Data tidak tersedia"}
+                          </span>
+                          <Info className="inline size-4" />
                         </Badge>
                       }
                       ContentComponent={
@@ -256,11 +263,13 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                               nation.headOfGovernments?.name || "",
                             ),
                           }}
-                          className="inline-flex items-center gap-1 text-xs hover:cursor-pointer hover:underline md:text-sm"
+                          className="inline text-center text-xs hover:cursor-pointer hover:underline md:text-sm"
                         >
-                          {nation.headOfGovernments?.name ||
-                            "Data tidak tersedia"}
-                          <ExternalLink className="size-4" />
+                          <span className="mr-[2px] align-middle">
+                            {nation.headOfGovernments?.name ||
+                              "Data tidak tersedia"}
+                          </span>
+                          <Info className="inline size-4" />
                         </Badge>
                       }
                       ContentComponent={
@@ -345,7 +354,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                     TriggerComponent={
                       <span className="cursor-pointer text-center hover:underline">
                         Indeks Demokrasi
-                        <ExternalLink className="ms-1 inline size-3" />
+                        <Info className="ms-1 inline size-3" />
                       </span>
                     }
                     TitleComponent={"Indeks Demokrasi"}
@@ -406,7 +415,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                       TriggerComponent={
                         <span className="cursor-pointer text-center hover:underline">
                           Indeks Supremasi Hukum
-                          <ExternalLink className="ms-1 inline size-3" />
+                          <Info className="ms-1 inline size-3" />
                         </span>
                       }
                       TitleComponent={"Indeks Supremasi Hukum"}
@@ -469,7 +478,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                       TriggerComponent={
                         <span className="cursor-pointer text-center hover:underline">
                           Indeks Persepsi Korupsi
-                          <ExternalLink className="ms-1 inline size-3" />
+                          <Info className="ms-1 inline size-3" />
                         </span>
                       }
                       TitleComponent={"Indeks Persepsei Korupsi"}
@@ -534,7 +543,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                       TriggerComponent={
                         <span className="cursor-pointer text-center hover:underline">
                           Indeks Pembangunan Manusia
-                          <ExternalLink className="ms-1 inline size-3" />
+                          <Info className="ms-1 inline size-3" />
                         </span>
                       }
                       TitleComponent={"Indeks Pembangunan Mamusia"}
