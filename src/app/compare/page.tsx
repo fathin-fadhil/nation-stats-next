@@ -30,7 +30,7 @@ export default async function ComparePage({
         <h1 className="pt-3 text-center text-3xl font-bold">
           {nationsData.length === 1 ? "Eksplore Negara" : "Bandingkan Negara"}
         </h1>
-        <main className="mx-auto flex w-full max-w-5xl flex-col px-4">
+        <main className="mx-auto flex w-full max-w-5xl flex-col px-4 pb-4">
           <SearchNations allNations={allNations} />
           <p className="inline-flex items-center py-2 pl-1 text-xs">
             Klik simbol
