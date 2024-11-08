@@ -309,24 +309,30 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                 key={nation.id + "parties"}
                 className={`w-[50%] align-top ${nations.length > 1 && (i === 0 ? "pr-1" : "pl-1")}`}
               >
-                <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] p-1 md:p-2">
-                  {nation.parties.map((party, i) => (
-                    <div
-                      key={party.id}
-                      className={`flex items-center gap-1 ${nation.parties.length - 1 !== i && "border-b-[1px]"} px-1 py-2 md:gap-2 md:px-2 md:py-4`}
-                    >
-                      <img
-                        src={party.logoUrl!}
-                        height={40}
-                        width={40}
-                        className=""
-                      />
-                      <span className="text-sm font-medium lg:text-base">
-                        {party.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                {nation.parties.length === 0 ? (
+                  <p className="text-center text-sm text-gray-500">
+                    Negara ini tidak memiliki partai politik
+                  </p>
+                ) : (
+                  <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] p-1 md:p-2">
+                    {nation.parties.map((party, i) => (
+                      <div
+                        key={party.id}
+                        className={`flex items-center gap-1 ${nation.parties.length - 1 !== i && "border-b-[1px]"} px-1 py-2 md:gap-2 md:px-2 md:py-4`}
+                      >
+                        <img
+                          src={party.logoUrl!}
+                          height={40}
+                          width={40}
+                          className=""
+                        />
+                        <span className="text-sm font-medium lg:text-base">
+                          {party.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </td>
             ))}
           </tr>
