@@ -80,7 +80,7 @@ export function NationsGrid({ nations }: { nations: Nation[] }) {
                   {nation.description?.split("\n").map((desc, i) => (
                     <p
                       key={nation.id + "desc" + i}
-                      className="mb-2 text-sm text-gray-600"
+                      className="mb-2 text-sm text-gray-600 md:text-lg"
                     >
                       {desc}
                     </p>
