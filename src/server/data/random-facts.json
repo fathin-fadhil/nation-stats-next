@@ -118,5 +118,55 @@
     "name": "Kamboja",
     "code": "kh",
     "fact": "Kamboja adalah tempat berdirinya Angkor Wat, kompleks candi terbesar di dunia yang dibangun pada abad ke-12 dan menjadi simbol nasional Kamboja."
+  },
+  {
+    "name": "Argentina",
+    "code": "ar",
+    "fact": "Argentina adalah tempat kelahiran tarian Tango, sebuah tarian yang terkenal secara internasional dan memiliki sejarah panjang sebagai bagian dari budaya Argentina."
+  },
+  {
+    "name": "Afrika Selatan",
+    "code": "za",
+    "fact": "Afrika Selatan memiliki tiga ibu kota resmi: Pretoria sebagai pusat eksekutif, Bloemfontein sebagai pusat yudisial, dan Cape Town sebagai pusat legislatif."
+  },
+  {
+    "name": "Nepal",
+    "code": "np",
+    "fact": "Nepal adalah rumah bagi Gunung Everest, puncak tertinggi di dunia, dan memiliki delapan dari sepuluh gunung tertinggi di dunia."
+  },
+  {
+    "name": "Haiti",
+    "code": "ht",
+    "fact": "Haiti adalah negara pertama di dunia yang didirikan oleh bekas budak setelah memperoleh kemerdekaan dari Prancis pada tahun 1804."
+  },
+  {
+    "name": "Ethiopia",
+    "code": "et",
+    "fact": "Ethiopia dianggap sebagai tempat lahirnya kopi; menurut legenda, seorang penggembala bernama Kaldi menemukan kopi di Ethiopia pada abad ke-9."
+  },
+  {
+    "name": "Korea Selatan",
+    "code": "kr",
+    "fact": "Korea Selatan adalah satu-satunya negara di dunia yang memiliki 'Hari Valentine' setiap bulan pada tanggal 14, di mana pasangan merayakan bentuk kasih sayang yang berbeda-beda."
+  },
+  {
+    "name": "Meksiko",
+    "code": "mx",
+    "fact": "Meksiko memperkenalkan cokelat, cabai, dan jagung ke dunia. Cokelat dulunya dianggap sebagai hadiah dari dewa oleh peradaban Aztek."
+  },
+  {
+    "name": "Finlandia",
+    "code": "fi",
+    "fact": "Finlandia dikenal sebagai 'Negeri Seribu Danau' karena memiliki lebih dari 187.000 danau, salah satu jumlah terbanyak di dunia."
+  },
+  {
+    "name": "Portugal",
+    "code": "pt",
+    "fact": "Portugal adalah salah satu negara tertua di Eropa, didirikan pada tahun 1139 dan memiliki batas negara yang hampir tidak berubah sejak abad ke-12."
+  },
+  {
+    "name": "Jamaika",
+    "code": "jm",
+    "fact": "Jamaika adalah negara Karibia pertama yang meraih medali Olimpiade dan dikenal karena prestasi luar biasa dalam bidang lari cepat."
   }
 ]
