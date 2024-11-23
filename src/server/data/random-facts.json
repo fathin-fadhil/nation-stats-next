@@ -168,5 +168,51 @@
     "name": "Jamaika",
     "code": "jm",
     "fact": "Jamaika adalah negara Karibia pertama yang meraih medali Olimpiade dan dikenal karena prestasi luar biasa dalam bidang lari cepat."
+  },
+  {
+    "name": "Jerman",
+    "code": "de",
+    "fact": "Jerman adalah negara penemu mesin cetak, yang diciptakan oleh Johannes Gutenberg pada abad ke-15, merevolusi dunia penerbitan."
+  },
+  {
+    "name": "Spanyol",
+    "code": "es",
+    "fact": "Spanyol adalah negara asal siesta, tradisi tidur siang yang terkenal dan masih dipraktikkan di beberapa daerah pedesaan."
+  },  
+  {
+    "name": "Chile",
+    "code": "cl",
+    "fact": "Chile adalah rumah bagi Gurun Atacama, tempat terkering di bumi, dengan beberapa area yang tidak pernah menerima hujan dalam sejarah tercatat."
+  },
+  {
+    "name": "Yunani",
+    "code": "gr",
+    "fact": "Yunani adalah tempat lahirnya Olimpiade kuno, yang pertama kali diadakan di Olympia pada tahun 776 SM."
+  },
+  {
+    "name": "Irlandia",
+    "code": "ie",
+    "fact": "Irlandia tidak memiliki ular asli karena pulau ini tidak pernah terhubung ke daratan, membuat ular sulit menjangkaunya."
+  },
+  {
+    "name": "Turki",
+    "code": "tr",
+    "fact": "Turki adalah satu-satunya negara yang terletak di dua benua, yaitu Asia dan Eropa, dengan kota Istanbul yang membentang di keduanya."
+  },
+  {
+    "name": "Arab Saudi",
+    "code": "sa",
+    "fact": "Arab Saudi memiliki 'Empty Quarter' (Rub' al Khali), gurun pasir terbesar di dunia tanpa pemukiman manusia permanen."
+  },
+  {
+    "name": "Perancis",
+    "code": "fr",
+    "fact": "Prancis adalah negara asal sistem metrik, yang diperkenalkan pertama kali selama Revolusi Prancis pada tahun 1790-an."
+  },
+  {
+    "name": "Norwegia",
+    "code": "no",
+    "fact": "Norwegia memiliki matahari tengah malam selama musim panas di daerah utara, di mana matahari tidak pernah terbenam."
   }
 ]
+  
